@@ -1,0 +1,285 @@
+@use "../abstracts/index" as *;
+
+form {
+    position: relative;
+    z-index: 30;
+    textarea,
+    input[type="text"],
+    input[type="password"],
+    input[type="datetime"],
+    input[type="datetime-local"],
+    input[type="date"],
+    input[type="month"],
+    input[type="time"],
+    input[type="week"],
+    input[type="number"],
+    input[type="email"],
+    input[type="url"],
+    input[type="search"],
+    input[type="tel"],
+    input[type="color"] {
+        outline: 0;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        width: 100%;
+        height: 60px;
+        padding: 0 24px;
+        font-size: 16px;
+        line-height: 24px;
+        background-color: var(--White);
+        border: 1px solid transparent;
+        border-radius: 999px;
+        overflow: hidden;
+        margin-bottom: 0;
+        @include transition3();
+        &::placeholder {
+            font-size: 16px;
+            line-height: 24px;
+            color: var(--Mono-gray-5);
+        }
+        &:focus {
+            border-color: var(--Black);
+        }
+        &.style-border {
+            border: 1px solid var(--Mono-gray-5);
+        }
+    }
+    button,
+    input[type="button"],
+    input[type="reset"],
+    input[type="submit"] {
+        background-color: transparent;
+        overflow: hidden;
+        padding: 0;
+    }
+    textarea {
+        height: 227px;
+        border-radius: 16px;
+        padding: 17px 24px;
+    }
+}
+
+.tf-dropdown-sort {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    line-height: 20px;
+    gap: 8px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    .icon {
+        font-size: 14px;
+    }
+    .btn-select {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4px;
+        text-wrap: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .dropdown-menu {
+        width: 100%;
+        border: 0;
+        padding: 15px 5px;
+        border-radius: 0;
+        max-height: 68vh;
+        isolation: isolate;
+        overscroll-behavior-y: contain;
+        overflow-y: auto;
+        box-shadow: 0 0 26px rgba(0, 0, 0, 0.06);
+    }
+    .select-item {
+        position: relative;
+        padding: 0 15px;
+        line-height: 30px;
+        width: 100%;
+        @include transition3;
+        &.active {
+            background-color: var(--Mono-gray-2);
+            padding: 0 15px !important;
+            border: 0 !important;
+        }
+        &:hover {
+            background-color: var(--Mono-gray-2);
+        }
+    }
+}
+
+.leave-comment {
+    background-color: var(--Mono-gray-1);
+    border-radius: 12px;
+    padding: 41px 48px 48px;
+}
+
+.tf-check {
+    position: relative;
+    background: transparent;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    height: 24px !important;
+    min-width: 24px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    background-color: var(--White) !important;
+    &:checked {
+        background-color: var(--Black) !important;
+        &::before {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+    &::before {
+        font-family: $fontIcon;
+        content: "\e916";
+        position: absolute;
+        color: var(--White);
+        opacity: 0;
+        left: 4px;
+        top: 4px;
+        font-size: 16px;
+        transform: scale(0.5);
+        @include transition3;
+    }
+    &.type-cycle {
+        border-radius: 999px;
+        border: 1px solid var(--Mono-gray-5);
+        min-width: 18px;
+        height: 18px !important;
+        &::before {
+            left: 3px;
+            top: 4px;
+            font-size: 10px;
+        }
+    }
+}
+
+.form-contact {
+    padding: 43px 48px 48px;
+    border-radius: 12px;
+    background-color: var(--Mono-gray-1);
+}
+
+.form-newsletter {
+    &.style-1 {
+        .subscribe-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+        fieldset {
+            flex: 1;
+            input {
+                padding-left: 56px;
+            }
+        }
+        .icon {
+            font-size: 24px;
+            position: absolute;
+            left: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    &.style-2 {
+        .wrap {
+            display: flex;
+            margin-bottom: 39px;
+            fieldset {
+                max-width: 429px;
+                width: 100%;
+                input {
+                    height: 56px;
+                    font-size: 14px;
+                    line-height: 20px;
+                    &::placeholder {
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+                }
+            }
+        }
+        .tf-btn {
+            width: 214px;
+        }
+        .tf-check {
+            margin-top: 5px;
+        }
+    }
+}
+
+.form-search {
+    &.style-1 {
+        .wrap {
+            display: flex;
+            .tf-btn {
+                height: 44px;
+            }
+        }
+        .title {
+            margin-bottom: 12px;
+        }
+        .tf-btn {
+            height: 44px;
+        }
+        fieldset {
+            width: 100%;
+            input {
+                padding: 0 12px;
+                border: 1px solid var(--Mono-gray-2);
+                height: 44px;
+                &::placeholder {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+    }
+    &.style-2 {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        fieldset input {
+            padding: 0;
+            height: 18px;
+            font-size: 14px;
+            line-height: 20px;
+            border-radius: 0;
+            &:focus {
+                border-color: transparent;
+            }
+            &::placeholder {
+                font-size: 14px;
+                line-height: 20px;
+            }
+        }
+        button {
+            flex-shrink: 0;
+            padding: 0;
+            background-color: transparent;
+            border: 0;
+            @include transition3();
+            transform: rotateY(180deg);
+            i {
+                font-size: 18px;
+            }
+            &:hover {
+                color: var(--Primary);
+            }
+        }
+    }
+}

@@ -1,0 +1,173 @@
+@use "../abstracts/index" as *;
+.offcanvas-search {
+    height: max-content !important;
+    background-color: var(--White);
+    z-index: 99999;
+    > .btn-close-search {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 30px;
+        height: 30px;
+        font-size: 22px;
+        @include flex(center, center);
+        z-index: 1;
+        background-color: transparent;
+        border: 1px solid var(--mono-gray3);
+        color: var(--mono-gray3);
+        border-radius: 8px;
+        @include transition3();
+        &:hover {
+            border-color: var(--Black);
+            color: var(--Black);
+        }
+    }
+    .offcanvas-body {
+        padding: 60px 0;
+    }
+    .form-search-courses {
+        overflow: hidden;
+        border-radius: 4px;
+        .button-submit button {
+            position: absolute;
+            height: 36px;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 10px;
+            border-radius: 4px;
+        }
+    }
+    fieldset input {
+        border-radius: 4px;
+    }
+}
+
+.offcanvas-backdrop,
+.overlay-blog {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    position: fixed;
+    background: rgba(255, 255, 255, 0.2);
+    opacity: 0.7;
+    backdrop-filter: blur(10px);
+    @include transition3();
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        z-index: 989;
+       
+    }
+}
+
+.canvas-wrapper {
+    padding: 0;
+    isolation: isolate;
+    height: 100%;
+    width: 100%;
+    max-height: none;
+    display: grid;
+    grid-auto-rows: auto minmax(0, 1fr) auto;
+    align-content: start;
+}
+
+.popup-form-search {
+    position: absolute;
+    top: 76%;
+    background-color: var(--White);
+    border-radius: 24px;
+    padding: 32px 24px;
+    box-shadow: 0 0 26px rgba(0, 0, 0, 0.06);
+    width: 549px;
+    right: 0;
+    margin-top: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    @include transition3();
+    z-index: 99;
+    .title {
+        font-size: 20px;
+        line-height: 28px;
+    }
+    .form-search {
+        margin-bottom: 24px;
+    }
+    .wrap-tag {
+        display: flex;
+    }
+    .tag-item {
+        height: 30px;
+        padding: 0 8px;
+        border: 1px solid var(--Mono-gray-2);
+        border-radius: 999px;
+        cursor: pointer;
+        @include transition3();
+        i {
+            font-size: 16px;
+            @include transition3();
+        }
+        &:hover {
+            -webkit-transform: translate3d(0, -2px, 0);
+            transform: translate3d(0, -2px, 0);
+        }
+    }
+    .close-form {
+        font-size: 24px;
+        @include transition3();
+        cursor: pointer;
+        transform: rotate(0);
+        width: max-content;
+        margin-left: auto;
+        &:hover {
+            transform: rotate(90deg);
+        }
+    }
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+}
+
+.popup-youtube {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    i {
+        position: absolute;
+        border-radius: 50%;
+        @include flex(center, center);
+        background: #ffffff4d;
+        backdrop-filter: blur(28.800003051757812px);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 115.2px;
+        height: 115.2px;
+        color: var(--White);
+        font-size: 45px;
+    }
+    &::after,
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        border-radius: 9999px;
+        animation: ripple 3s infinite;
+    }
+    &::after {
+        animation-delay: 0.5s;
+    }
+    &::before {
+        animation-delay: 0.9s;
+    }
+}

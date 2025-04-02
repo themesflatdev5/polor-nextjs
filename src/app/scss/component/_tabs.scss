@@ -1,0 +1,53 @@
+@use "../abstracts/index" as *;
+
+.nav-tabs-wrap {
+    &.style-1 {
+        display: flex;
+        gap: 12px;
+        flex-wrap: nowrap;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+        .nav-link {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            color: var(--Black);
+            @include flex-center();
+            width: 294px;
+            height: 80px;
+            border-radius: 16px;
+            border: 1px solid var(--Mono-gray-2);
+            i {
+                font-size: 24px;
+            }
+            &.active,
+            &:hover {
+                border-color: var(--Black);
+            }
+        }
+    }
+}
+.flat-animate-tab {
+    height: 100%;
+    overflow: hidden;
+    &.tab-content {
+        position: relative;
+        height: 100%;
+    }
+    .tab-pane {
+        position: absolute;
+        display: block;
+        height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(40px);
+        z-index: 1;
+        &.active {
+            position: relative;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            transition: 0.35s ease-in-out 0.35s;
+        }
+    }
+}

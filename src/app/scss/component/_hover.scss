@@ -1,0 +1,123 @@
+@use "../abstracts/index" as *;
+
+.hover-image {
+    .img-style,
+    .article-thumb {
+        position: relative;
+        overflow: hidden;
+        &:after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 0%;
+            left: 50%;
+            top: 50%;
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%) rotate(-45deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 1s;
+        }
+    }
+    &:hover {
+        .img-style,
+        .article-thumb {
+            &:after {
+                height: 250%;
+                transition: all 600ms linear;
+                background-color: transparent;
+            }
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+}
+
+.hover-image-2 {
+    .image-rotate {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            @include transition3;
+        }
+    }
+    &:hover {
+        .image-rotate {
+            img {
+                transform: scale(1.1) rotate(3deg);
+            }
+        }
+    }
+}
+
+.hover-image-3 {
+    .img-style {
+        position: relative;
+        overflow: hidden;
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transition: .6s;
+            object-fit: cover;
+            &:nth-child(1) {
+                transform: translatex(50%) scalex(2);
+                opacity: 0;
+                filter: blur(10px);
+            }
+        }
+    }
+    &:hover {
+        .img-style {
+            img:nth-child(2) {
+                transform: translatex(-50%) scalex(2);
+                opacity: 0;
+                filter: blur(10px);
+            }
+            img:nth-child(1) {
+                transform: translatex(0) scalex(1);
+                opacity: 1;
+                filter: blur(0);
+            }
+        }
+    }
+}
+
+.hover-line-text {
+    display: inline;
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+    background-image: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(currentColor),
+        color-stop(98%, currentColor)
+    );
+    background-image: linear-gradient(
+        to bottom,
+        currentColor 0%,
+        currentColor 98%
+    );
+    background-size: 0 1px;
+    background-repeat: no-repeat;
+    background-position: left 100%;
+    &:hover {
+        background-size: 100% 1px;
+    }
+}

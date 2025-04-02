@@ -1,0 +1,97 @@
+@use "../abstracts/index" as *;
+
+.sw-button {
+    @include flex-center();
+    &.style-default {
+        gap: 12px;
+        height: 32px;
+        width: 32px;
+        border: 1px solid var(--Mono-gray-3);
+        border-radius: 999px;
+        font-size: 14px;
+        @include transition3();
+        &.v2 {
+            &:hover {
+                background-color: var(--Black);
+                color: var(--White);
+            }
+        }
+        &:hover {
+            border-color: var(--Black);
+        }
+        &.swiper-button-disabled {
+            opacity: 0.2;
+            pointer-events: none;
+        }
+    }
+    &.style-1 {
+        padding: 10px 11px;
+        font-size: 14px;
+        color: var(--White);
+    }
+    &.style-icon-with-text {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        i {
+            @include flex-center();
+            height: 46px;
+            width: 46px;
+            border-radius: 9999px;
+            border: 1px solid var(--Black);
+            font-size: 14px;
+        }
+        &.swiper-button-disabled {
+            i {
+                border-color: var(--Mono-gray-3);
+                color: var(--Mono-gray-3);
+            }
+        }
+    }
+    &.style-2 {
+        height: 44px;
+        width: 44px;
+        background-color: var(--White);
+        font-size: 24px;
+        border-radius: 9999px;
+    }
+}
+
+.pagination-wrap {
+    display: flex;
+    align-items: center;
+    max-width: 195px;
+    z-index: 1;
+}
+
+.sw-dots {
+    .swiper-pagination-bullet {
+        background: #ffffff99;
+        opacity: 1;
+        width: 7px;
+        height: 7px;
+        &.swiper-pagination-bullet-active {
+            background-color: var(--White) !important;
+        }
+    }
+    &.style-1 {
+        .swiper-pagination-bullet {
+            background-color: var(--Mono-gray-2);
+            &.swiper-pagination-bullet-active {
+                background-color: var(--Black) !important;
+            }
+        }
+    }
+}
+
+.sw-progress {
+    position: relative;
+    border-radius: 16px;
+    background-color: var(--White);
+    height: 6px !important;
+    overflow: hidden;
+    max-width: 692.25px;
+    .swiper-pagination-progressbar-fill {
+        background-color: var(--Black);
+    }
+}

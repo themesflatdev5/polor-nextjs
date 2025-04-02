@@ -1,0 +1,105 @@
+@use "../abstracts/index" as *;
+
+.footer {
+    padding-top: 54px;
+    .right {
+        display: flex;
+    }
+    .footer-col-block {
+        &.categories,
+        &.demo {
+            flex: 43%;
+        }
+        &.page {
+            flex: 20%;
+        }
+    }
+    .footer-heading {
+        margin-bottom: 35px;
+    }
+    .footer-description {
+        max-width: 625px;
+    }
+    .footer-bottom {
+        .wrapper {
+            border-top: 1px solid var(--Mono-gray-2);
+            margin-top: 125px;
+            padding-top: 56px;
+            padding-bottom: 48px;
+        }
+        .left,
+        .center,
+        .right {
+            display: flex;
+        }
+        .left {
+            gap: 34px;
+            align-items: center;
+            flex: 37.3%;
+        }
+        .center {
+            gap: 44px;
+            flex: 20%;
+            a{
+                white-space: nowrap;
+            }
+        }
+        .right {
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            gap: 20px;
+            flex: 30%;
+            i {
+                font-size: 20px;
+                display: block;
+                width: 48px;
+                height: 48px;
+                border-radius: 999px;
+                background-color: var(--Black);
+                color: var(--White);
+                @include flex-center();
+            }
+        }
+    }
+    &.style-2 {
+        padding-top: 85px;
+        border-top: 1px solid var(--Mono-gray-5);
+        .sign {
+            padding-top: 7px;
+            margin-bottom: 24px;
+        }
+        .footer-bottom {
+            .wrapper {
+                border-top: none;
+                padding-top: 64px;
+            }
+            .left {
+                gap: 46px;
+                p {
+                    max-width: 211px;
+                }
+            }
+            .center {
+                gap: 45px;
+                flex: 21%;
+                a {
+                    white-space: nowrap;
+                }
+            }
+            .right {
+                gap: 9px;
+                flex: 2.5%;
+            }
+        }
+        .footer-col-block {
+            &.categories,
+            &.demo {
+                flex: 23%;
+            }
+            &.page {
+                flex: 20%;
+            }
+        }
+    }
+}
