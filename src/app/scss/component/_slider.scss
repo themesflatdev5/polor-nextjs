@@ -2,6 +2,7 @@
 
 .sw-button {
     @include flex-center();
+    cursor: pointer;
     &.style-default {
         gap: 12px;
         height: 32px;

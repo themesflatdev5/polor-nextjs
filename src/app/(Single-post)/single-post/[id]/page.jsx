@@ -1,0 +1,81 @@
+import React from "react";
+import { allCategories } from "@/data/categories";
+import SinglePost from "@/components/single-post/SinglePost";
+import Link from "next/link";
+import Header from "@/components/headers/Header";
+import Footer from "@/components/footer/Footer";
+import MobileMenu from "@/components/headers/MobileMenu";
+import Layout from "@/components/layout/Layout";
+
+export default async function page({ params }) {
+    const resolvedParams = await params;
+    const post =
+        allCategories.filter((elm) => elm.id == resolvedParams.id)[0] ||
+        allCategories[0];
+    return (
+        <>
+        <Layout>
+            <div className="page-title style-sigle-post">
+                <div className="tf-container">
+                    <div className="page-inner">
+                        <div className="row justify-content-center">
+                            <div className="col-lg-8">
+                                <ul className="breadcrumb justify-content-start mb_32">
+                                    <li className="text-body-2">
+                                        <Link className="link" href={"/"}>
+                                            Home
+                                        </Link>
+                                    </li>
+                                    <li className="text-body-2">
+                                        Fashion & Style
+                                    </li>
+                                    <li className="text-body-2">
+                                        {post.title}
+                                    </li>
+                                </ul>
+                                <div className="category-item">
+                                    <div className="content">
+                                        <Link
+                                            className="category-tag text-caption mb_18"
+                                            href="/categories-grid"
+                                        >
+                                            {post.tag}
+                                        </Link>
+                                        <h1 className="title  fw-6">
+                                            {post.title}
+                                        </h1>
+                                        <div className="category-bot d-flex align-items-center justify-content-between">
+                                            <div className="credit text-body-3 text_mono-gray-5">
+                                                {post.date}
+                                                <a
+                                                    className="hover-line-text fw-6 text_black"
+                                                    href="#"
+                                                >
+                                                    {post.author}
+                                                </a>
+                                            </div>
+                                            <div className="comment d-flex text-body-2 gap_8 align-items-center text_mono-gray-5">
+                                                <i className="icon-comment-alt" />
+                                                <span>{post.comments}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="video-thumb">
+                            <iframe
+                                allowFullScreen
+                                className="video"
+                                src="https://www.youtube-nocookie.com/embed/NGvSMK0ycxM?autoplay=0&mute=0&rel=0&modestbranding=1&controls=1&loop=0&playsinline=1&showinfo=1&fs=1&iv_load_policy=3"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <SinglePost post={post} />
+            <Footer />
+        </Layout>
+        </>
+    );
+}

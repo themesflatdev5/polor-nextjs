@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import Nav from "./nav";
+import Nav from "./Nav";
 import { useState, useRef, useEffect } from "react";
 import logo from "@assets/images/logo/polor.png";
 
-export default function header1() {
+export default function Header({handleShowMb}) {
     const parentClass = "header style-default";
     const [isFixed, setIsFixed] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -45,7 +45,7 @@ export default function header1() {
                                 </ul>
                             </nav>
                             <div className="main-logo">
-                                <Link href={`/`}>
+                                <Link href={`/`}  className="site-logo">
                                     <Image
                                         alt="logo"
                                         width={111}
@@ -126,10 +126,8 @@ export default function header1() {
                                     <span>Buy Now</span>
                                 </Link>
                                 <div
-                                    aria-controls="menu-mobile"
                                     className="mobile-button"
-                                    data-bs-target="#menu-mobile"
-                                    data-bs-toggle="offcanvas"
+                                    onClick={handleShowMb}
                                 >
                                     <div className="burger">
                                         <span />

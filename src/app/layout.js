@@ -1,4 +1,3 @@
-"use client";
 import { Instrument_Sans, Inter, Poppins } from "next/font/google";
 import "../../public/font/icomoon/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -27,9 +26,7 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body
-                className={`${inter.variable} ${instrumentSans.variable} ${poppins.variable}`}
-            >
+            <body className={`${inter.variable} ${instrumentSans.variable} ${poppins.variable}`}          >
                 {children}
             </body>
         </html>

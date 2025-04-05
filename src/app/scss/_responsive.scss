@@ -950,9 +950,6 @@
         }
     }
     .footer {
-        .footer-col-block .tf-collapse-content {
-            display: none;
-        }
         .footer-col-block {
             &.open {
                 .footer-heading-mobile {
@@ -963,9 +960,15 @@
                         transform: translate(0%, -50%) rotate(180deg);
                     }
                 }
+                .tf-collapse-content {
+                    display: block;
+                }
             }
             .tf-collapse-content {
-                display: none;
+                overflow-y: hidden;
+                display: block;
+                height: 0;
+                transition: 0.5s;
             }
         }
         .footer-menu-list {
