@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback, useMemo } from "react";
 import React from "react";
 import ReactHowler from "react-howler";
 import { songs } from "@/data/songs";
@@ -13,101 +13,118 @@ export default function Boxmusic() {
     const playerRef = useRef(null);
     const timerRef = useRef(null);
 
-    const currentSong = songs[currentSongIndex];
+    
+    const currentSong = useMemo(() => songs[currentSongIndex], [currentSongIndex]);
 
+   
     useEffect(() => {
         setCurrentTime(0);
         setDuration(0);
 
-        if (isPlaying) {
-            setTimeout(() => {
-                if (playerRef.current) {
-                    playerRef.current.seek(0);
-                }
-            }, 100);
+        if (isPlaying && playerRef.current) {
+            
+            requestAnimationFrame(() => {
+                playerRef.current?.seek(0);
+            });
         }
-    }, [currentSongIndex]);
+        
+        
+        return () => {
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+                timerRef.current = null;
+            }
+        };
+    }, [currentSongIndex, isPlaying]);
 
- 
+    
     useEffect(() => {
-        if (isPlaying) {
-            timerRef.current = setInterval(() => {
-                if (playerRef.current) {
-                    const time = playerRef.current.seek();
-                    if (typeof time === "number") {
-                        setCurrentTime(time);
-                    }
-                }
-            }, 1000);
-        } else {
-            clearInterval(timerRef.current);
+        if (!isPlaying) {
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+                timerRef.current = null;
+            }
+            return;
         }
+
+        timerRef.current = setInterval(() => {
+            if (playerRef.current) {
+                const time = playerRef.current.seek();
+                if (typeof time === "number") {
+                    setCurrentTime(time);
+                }
+            }
+        }, 1000);
 
         return () => {
             if (timerRef.current) {
-                clearInterval(timerRef.current); 
+                clearInterval(timerRef.current);
+                timerRef.current = null;
             }
         };
     }, [isPlaying]);
 
-    const handleLoad = () => {
-        if (playerRef.current) {
-            setDuration(playerRef.current.duration());
-        }
-    };
-
-    const formatTime = (time) => {
+   
+    const formatTime = useCallback((time) => {
         if (!time) return "00:00";
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
         return `${minutes < 10 ? "0" : ""}${minutes}:${
             seconds < 10 ? "0" : ""
         }${seconds}`;
-    };
+    }, []);
 
-    const handlePlayPause = () => {
-        setIsPlaying(!isPlaying);
-    };
+    
+    const handleLoad = useCallback(() => {
+        if (playerRef.current) {
+            setDuration(playerRef.current.duration());
+        }
+    }, []);
 
-    const handlePrevious = () => {
+    const handlePlayPause = useCallback(() => {
+        setIsPlaying(prev => !prev);
+    }, []);
+
+    const handlePrevious = useCallback(() => {
         if (currentTime > 3) {
             if (playerRef.current) {
                 playerRef.current.seek(0);
                 setCurrentTime(0);
             }
         } else {
-            setCurrentSongIndex((prevIndex) =>
+            setCurrentSongIndex(prevIndex =>
                 prevIndex === 0 ? songs.length - 1 : prevIndex - 1
             );
         }
-    };
+    }, [currentTime]);
 
-    const handleNext = () => {
-        setCurrentSongIndex((prevIndex) =>
+    const handleNext = useCallback(() => {
+        setCurrentSongIndex(prevIndex =>
             prevIndex === songs.length - 1 ? 0 : prevIndex + 1
         );
-    };
+    }, []);
 
-    const handleSeek = (e) => {
-        if (duration === 0) return; // Wait until duration is set
+    const handleSeek = useCallback((e) => {
+        if (duration === 0 || !playerRef.current) return;
 
         const progressBar = e.currentTarget;
         const clickPosition = e.nativeEvent.offsetX;
         const progressBarWidth = progressBar.clientWidth;
         const seekPosition = (clickPosition / progressBarWidth) * duration;
 
-        if (playerRef.current) {
-            playerRef.current.seek(seekPosition);
-            setCurrentTime(seekPosition);
-        }
-    };
+        playerRef.current.seek(seekPosition);
+        setCurrentTime(seekPosition);
+    }, [duration]);
 
-    const handleSongEnd = () => {
-        handleNext(); // Move to next song when the current song ends
-    };
+    const handleSongEnd = useCallback(() => {
+        handleNext();
+    }, [handleNext]);
 
-    const progressPercentage =
-        duration > 0 ? (currentTime / duration) * 100 : 0;
+
+    const progressPercentage = useMemo(() => 
+        duration > 0 ? (currentTime / duration) * 100 : 0, 
+        [currentTime, duration]
+    );
 
     return (
         <>
@@ -119,6 +136,7 @@ export default function Boxmusic() {
                             src={currentSong.thumb}
                             width={107}
                             height={107}
+                            priority={true}
                         />
                     </div>
                     <div className="song-details">
@@ -138,27 +156,21 @@ export default function Boxmusic() {
                             <button
                                 className="control-btn prev-btn"
                                 onClick={handlePrevious}
+                                type="button"
                             >
                                 <i className="icon-step-backward-solid" />
                             </button>
-                            {!isPlaying ? (
-                                <button
-                                    className="control-btn play-btn"
-                                    onClick={handlePlayPause}
-                                >
-                                    <i className="icon-play-solid" />
-                                </button>
-                            ) : (
-                                <button
-                                    className="control-btn pause-btn"
-                                    onClick={handlePlayPause}
-                                >
-                                    <i className="icon-pause-circle-solid"></i>
-                                </button>
-                            )}
+                            <button
+                                className="control-btn"
+                                onClick={handlePlayPause}
+                                type="button"
+                            >
+                                <i className={isPlaying ? "icon-pause-circle-solid" : "icon-play-solid"} />
+                            </button>
                             <button
                                 className="control-btn next-btn"
                                 onClick={handleNext}
+                                type="button"
                             >
                                 <i className="icon-step-forward-solid" />
                             </button>
@@ -186,6 +198,8 @@ export default function Boxmusic() {
                 ref={playerRef}
                 onLoad={handleLoad}
                 onEnd={handleSongEnd}
+                html5={true}
+                preload={true}
             />
         </>
     );

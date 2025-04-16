@@ -1,58 +1,93 @@
-'use client';
+"use client";
+import React, { forwardRef, useRef } from "react";
+import {
+    useAnimationText,
+    useScrollAnimation,
+    useParallax,
+    useFooterAnimation,
+} from "../../hooks/useGsapAnimations";
 
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+export const AnimatedText = forwardRef(
+    ({ children, effect = "fade", className = "", ...props }, ref) => {
+        const textRef = ref || useRef(null);
+        useAnimationText(textRef, { effect });
 
-if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
-}
-
-export const initScrollingEffects = () => {
-  if (typeof window === 'undefined') return;
-
-  const elements = document.querySelectorAll(".scrolling-effect");
-
-  elements.forEach((el) => {
-    const delayValue = el.getAttribute("data-delay") || "0";
-
-    const settings = {
-      scrollTrigger: {
-        trigger: el,
-        start: "top+=30 bottom",
-        end: "bottom bottom",
-        toggleActions: "play none none none",
-      },
-      duration: 0.9,
-      ease: "power3.out",
-      delay: parseFloat(delayValue),
-    };
-
-    if (el.classList.contains("effectRight")) {
-      settings.opacity = 0;
-      settings.x = 80;
+        return (
+            <div
+                ref={textRef}
+                className={`animated-text ${className}`}
+                {...props}
+            >
+                {children}
+            </div>
+        );
     }
-    if (el.classList.contains("effectLeft")) {
-      settings.opacity = 0;
-      settings.x = -80;
-    }
-    if (el.classList.contains("effectBottom")) {
-      settings.opacity = 0;
-      settings.y = 100;
-    }
-    if (el.classList.contains("effectTop")) {
-      settings.opacity = 0;
-      settings.y = -80;
-    }
-    if (el.classList.contains("effectZoomIn")) {
-      settings.opacity = 0;
-      settings.scale = 0.5;
-    }
-    if (el.classList.contains("effectBounceUp")) {
-      settings.opacity = 0;
-      settings.y = 100;
-      settings.ease = "bounce.out";
-    }
+);
+AnimatedText.displayName = "AnimatedText";
 
-    gsap.from(el, settings);
-  });
+export const AnimatedElement = forwardRef(
+    (
+        { children, effect = "fade", delay = 0, className = "", ...props },
+        ref
+    ) => {
+        const elementRef = ref || useRef(null);
+        useScrollAnimation(elementRef, { effect, delay });
+
+        return (
+            <div
+                ref={elementRef}
+                className={`animated-element ${className}`}
+                {...props}
+            >
+                {children}
+            </div>
+        );
+    }
+);
+AnimatedElement.displayName = "AnimatedElement";
+
+export const ParallaxElement = forwardRef(
+    (
+        {
+            children,
+            direction = "up",
+            distance = "20%",
+            rotate,
+            className = "",
+            ...props
+        },
+        ref
+    ) => {
+        const elementRef = ref || useRef(null);
+        useParallax(elementRef, { direction, distance, rotate });
+
+        return (
+            <div
+                ref={elementRef}
+                className={`parallax-element ${className}`}
+                {...props}
+            >
+                {children}
+            </div>
+        );
+    }
+);
+ParallaxElement.displayName = "ParallaxElement";
+
+export const AnimatedFooter = ({ children, footerContent, className = "" }) => {
+    const contentRef = useRef(null);
+    const footerRef = useRef(null);
+
+    useFooterAnimation(footerRef, contentRef);
+
+    return (
+        <>
+            <div ref={contentRef} className="main-content">
+                {children}
+            </div>
+            <footer ref={footerRef} className={`animated-footer ${className}`}>
+                {footerContent}
+            </footer>
+        </>
+    );
 };

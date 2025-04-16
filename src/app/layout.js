@@ -30,7 +30,6 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
     return (
         <html lang="en" className="mdl-js">
-            
             <body className={`${inter.variable} ${instrumentSans.variable} ${poppins.variable}`}          >
                 {children}
                 <Script src="/js/ScrollSmooth.js" strategy="afterInteractive" />

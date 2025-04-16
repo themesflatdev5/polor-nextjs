@@ -1,9 +1,15 @@
-import React from "react";
+"use Client";
+
+import React, { useEffect } from "react";
 import { author } from "@/data/author";
 import Link from "next/link";
 import Image from "next/image";
+import useAnimateElement from "../../../hooks/useGsapAnimations";
+import { usePathname } from "next/navigation";
 
 export default function About() {
+  
+
     return (
         <div className="section-about style-2 tf-spacing-8">
             <div className="tf-container">
@@ -17,10 +23,7 @@ export default function About() {
                         good time when exploring
                     </h4>
                 </div>
-                <div
-                    className="tf-social style-1 d-flex align-items-center justify-content-center gap_16 mb_40 wow animate__fadeInUp animate__animated"
-                    data-wow-delay="0s"
-                >
+                <div className="tf-social style-1 d-flex align-items-center justify-content-center gap_16 mb_40 wow animate__fadeInUp animate__animated">
                     <a href="#">
                         <i className="icon-facebook-f fb" />
                     </a>
@@ -58,7 +61,7 @@ export default function About() {
                 <div className="wrap-award">
                     <div
                         className="item-1 scrolling-effect effectBounceUp"
-                        data-delay=".6s"
+                        data-delay=".6"
                         data-wow-duration="2s"
                     >
                         <div className="awards-item style-logo style-1 text-center ">
@@ -92,7 +95,7 @@ export default function About() {
                         </div>
                     </div>
                     <div
-                        className=" item-3 scrolling-effect effectBounceUp"
+                        className="item-3 scrolling-effect effectBounceUp"
                         data-delay="0s"
                         data-wow-duration="2s"
                     >

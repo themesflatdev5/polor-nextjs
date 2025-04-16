@@ -22,111 +22,63 @@ const SlideHero = ({ children, effect = "slide", loop = false }) => {
     const [swiper, setSwiper] = useState(null);
 
     useEffect(() => {
-        // Chỉ thực hiện khi swiper đã được khởi tạo
         if (!swiper) return;
 
-        // Kiểm tra xem swiper có tồn tại và có các phần tử cần thiết không
         const container = swiper.el;
         if (!container) return;
 
-        // Xử lý parallax nếu cần
-        try {
-            const sliders = container.querySelectorAll(".animation-sl");
-            const hasParallax = Array.from(sliders || []).some(
-                (slider) => slider && slider.hasAttribute && slider.hasAttribute("data-cs-parallax")
-            );
+        const applyParallaxAttributes = () => {
+            const hasParallax = [
+                ...container.querySelectorAll(".animation-sl"),
+            ].some((el) => el?.hasAttribute?.("data-cs-parallax"));
+            if (!hasParallax) return;
 
-            if (hasParallax) {
-                const postContents = container.querySelectorAll(".cs-entry__content");
-                if (postContents && postContents.length) {
-                    postContents.forEach((postContent) => {
-                        if (postContent) {
-                            postContent.setAttribute("data-swiper-parallax-x", "-400");
-                            postContent.setAttribute("data-swiper-parallax-duration", "800");
-                        }
-                    });
-                }
-            }
-        } catch (error) {
-            console.error("Error setting up parallax:", error);
-        }
+            container
+                .querySelectorAll(".cs-entry__content")
+                ?.forEach((content) => {
+                    content?.setAttribute("data-swiper-parallax-x", "-400");
+                    content?.setAttribute(
+                        "data-swiper-parallax-duration",
+                        "800"
+                    );
+                });
+        };
 
-        // Xử lý cho slide hiện tại khi khởi tạo
-        const handleInit = () => {
-            try {
-                if (!swiper || typeof swiper.activeIndex !== 'number') return;
-                
-                const activeIndex = swiper.activeIndex;
-                const slides = swiper.slides;
-                
-                if (!slides || !slides[activeIndex]) return;
-                
-                const initialSlide = slides[activeIndex];
-                const initialContent = initialSlide.querySelector(".cs-entry__content");
-                
-                if (initialContent) {
-                    initialContent.style.transform = "none";
-                }
-            } catch (error) {
-                console.error("Error in handleInit:", error);
+        const resetContentTransform = (index) => {
+            const slides = swiper.slides;
+            if (!slides || !slides[index]) return;
+
+            const currentContent =
+                slides[index].querySelector(".cs-entry__content");
+            if (currentContent) {
+                currentContent.style.transform = "none";
             }
         };
 
-        // Xử lý khi slide thay đổi
-        const handleSlideChange = () => {
-            try {
-                if (!swiper || typeof swiper.activeIndex !== 'number') return;
-                
-                const activeIndex = swiper.activeIndex;
-                const slides = swiper.slides;
-                
-                if (!slides || !slides[activeIndex]) return;
-                
-                const currentSlide = slides[activeIndex];
-                const currentContent = currentSlide.querySelector(".cs-entry__content");
-                
-                if (!currentContent) return;
-                
-                // Reset transform của tất cả các entry content
-                const allContents = container.querySelectorAll(".cs-entry__content");
-                if (allContents && allContents.length) {
-                    allContents.forEach((content) => {
-                        if (content === currentContent) {
-                            content.style.transform = "none";
-                        }
-                    });
-                }
-            } catch (error) {
-                console.error("Error in handleSlideChange:", error);
-            }
-        };
+        const handleInit = () => resetContentTransform(swiper.activeIndex);
+        const handleSlideChange = () =>
+            resetContentTransform(swiper.activeIndex);
 
-        // Đăng ký các sự kiện
+        applyParallaxAttributes();
+
         swiper.on("init", handleInit);
         swiper.on("slideChange", handleSlideChange);
-        
-        // Nếu swiper đã khởi tạo, chạy handleInit
-        if (swiper.initialized) {
-            handleInit();
-        }
 
-        // Cleanup
+        if (swiper.initialized) handleInit();
+
         return () => {
-            if (swiper) {
-                swiper.off("init", handleInit);
-                swiper.off("slideChange", handleSlideChange);
-            }
+            swiper.off("init", handleInit);
+            swiper.off("slideChange", handleSlideChange);
         };
-    }, [swiper]); // Chỉ chạy lại khi swiper thay đổi
+    }, [swiper]);
 
-    // Cấu hình Swiper options
     const swiperOptions = {
         modules: [Pagination, Navigation, Parallax, EffectFade, EffectCreative],
         slidesPerView: 1,
         speed: 1000,
-        loop: loop,
+        loop,
         parallax: true,
-        effect: effect,
+        effect,
         navigation: {
             nextEl: ".sw-single-next",
             prevEl: ".sw-single-prev",
@@ -137,27 +89,17 @@ const SlideHero = ({ children, effect = "slide", loop = false }) => {
         },
         observer: true,
         observeParents: true,
-        onSwiper: (swiperInstance) => {
-            setSwiper(swiperInstance);
-        },
+        onSwiper: setSwiper,
+        ...(effect === "fade" && {
+            fadeEffect: { crossFade: true },
+        }),
+        ...(effect === "creative" && {
+            creativeEffect: {
+                prev: { shadow: true, translate: [0, 0, -400] },
+                next: { translate: ["100%", 0, 0] },
+            },
+        }),
     };
-
-    // Thêm cấu hình riêng cho từng effect
-    if (effect === "fade") {
-        swiperOptions.fadeEffect = { crossFade: true };
-    }
-
-    if (effect === "creative") {
-        swiperOptions.creativeEffect = {
-            prev: {
-                shadow: true,
-                translate: [0, 0, -400],
-            },
-            next: {
-                translate: ["100%", 0, 0],
-            },
-        };
-    }
 
     return (
         <div className="slider-hero-container">
@@ -171,11 +113,11 @@ const SlideHero = ({ children, effect = "slide", loop = false }) => {
                 ))}
                 <div className="pagination-wrap">
                     <div className="sw-button style-1 sw-single-prev">
-                        <i className="icon-angle-left-solid"></i>
+                        <i className="icon-angle-left-solid" />
                     </div>
-                    <div className="sw-dots style-default sw-pagination"></div>
+                    <div className="sw-dots style-default sw-pagination" />
                     <div className="sw-button style-1 sw-single-next">
-                        <i className="icon-angle-right-solid"></i>
+                        <i className="icon-angle-right-solid" />
                     </div>
                 </div>
             </Swiper>
