@@ -5,7 +5,7 @@ import Nav from "./Nav";
 import { useState, useRef, useEffect } from "react";
 import logo from "@assets/images/logo/polor.png";
 
-export default function Header({handleShowMb}) {
+export default function Header({ handleShowMb }) {
     const parentClass = "header style-default";
     const [isFixed, setIsFixed] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function Header({handleShowMb}) {
     const togglePopup = () => {
         setIsOpen((prev) => !prev);
     };
-    
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (
@@ -27,15 +27,32 @@ export default function Header({handleShowMb}) {
                 setIsOpen(false);
             }
         };
-    
+
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, []);
+
+    useEffect(() => {
+        const header = document.querySelector(".header-fixed");
+        if (!header) return;
+        const handleScroll = () => {
+            if (window.scrollY >= 350) {
+                header.classList.add("is-fixed");
+            } else {
+                header.classList.remove("is-fixed");
+            }
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, []);
+
     return (
-        <div>
-            <header className={`${parentClass} `}>
+        <>
+            <header className={`${parentClass} header-fixed `}>
                 <div className="tf-container">
                     <div className="header-inner ">
                         <div className="header-inner-wrap">
@@ -45,17 +62,20 @@ export default function Header({handleShowMb}) {
                                 </ul>
                             </nav>
                             <div className="main-logo">
-                                <Link href={`/`}  className="site-logo">
+                                <Link href={`/`} className="site-logo">
                                     <Image
                                         alt="logo"
                                         width={111}
-                                        height={31}
+                                        height={0}
                                         src={logo}
                                     />
                                 </Link>
                             </div>
                             <div className="header-right">
-                                <div  ref={formPopUp} className="popup-show-form">
+                                <div
+                                    ref={formPopUp}
+                                    className="popup-show-form"
+                                >
                                     <button
                                         className="find btn-show"
                                         onClick={togglePopup}
@@ -63,61 +83,62 @@ export default function Header({handleShowMb}) {
                                         <i className="icon-search-solid" />
                                         <span className="bg-effect" />
                                     </button>
-                                  
+
+                                    <div
+                                        ref={popupRef}
+                                        className={`popup-show popup-form-search  ${
+                                            isOpen ? "show" : ""
+                                        }`}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                        }}
+                                    >
                                         <div
-                                            ref={popupRef}
-                                            className={`popup-show popup-form-search  ${isOpen ? 'show' : ''}`}
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                            }}
+                                            className="close-form"
+                                            onClick={() => setIsOpen(false)}
                                         >
-                                            <div
-                                                className="close-form"
-                                                onClick={() => setIsOpen(false)}
-                                            >
-                                                <i className="icon-times-solid" />
-                                            </div>
-                                            <div className="sub-heading fw-6 mb-3">
-                                                What are You Looking For?
-                                            </div>
-                                            <form className="form-search d-flex gap-3 style-1">
-                                                <input
-                                                    className="border p-2"
-                                                    name="text"
-                                                    placeholder="Search..."
-                                                    required
-                                                    type="text"
-                                                />
-                                                <button
-                                                    className="tf-btn animate-hover-btn"
-                                                    type="submit"
-                                                >
-                                                    <span>Search</span>
-                                                </button>
-                                            </form>
-                                            <ul className="wrap-tag d-flex align-items-center flex-wrap gap-3 mt-3">
-                                                {[
-                                                    "Travel",
-                                                    "Fashion & Style",
-                                                    "Photograph",
-                                                    "Design",
-                                                    "Relationships",
-                                                ].map((tag) => (
-                                                    <li
-                                                        key={tag}
-                                                        className="tag-item d-flex align-items-center gap-2"
-                                                    >
-                                                        <a
-                                                            className="text-caption text-black"
-                                                            href="/category-grid"
-                                                        >
-                                                            {tag}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                            <i className="icon-times-solid" />
                                         </div>
-                                  
+                                        <div className="sub-heading fw-6 mb-3">
+                                            What are You Looking For?
+                                        </div>
+                                        <form className="form-search d-flex gap-3 style-1">
+                                            <input
+                                                className="border p-2"
+                                                name="text"
+                                                placeholder="Search..."
+                                                required
+                                                type="text"
+                                            />
+                                            <button
+                                                className="tf-btn animate-hover-btn"
+                                                type="submit"
+                                            >
+                                                <span>Search</span>
+                                            </button>
+                                        </form>
+                                        <ul className="wrap-tag d-flex align-items-center flex-wrap gap-3 mt-3">
+                                            {[
+                                                "Travel",
+                                                "Fashion & Style",
+                                                "Photograph",
+                                                "Design",
+                                                "Relationships",
+                                            ].map((tag) => (
+                                                <li
+                                                    key={tag}
+                                                    className="tag-item d-flex align-items-center gap-2"
+                                                >
+                                                    <a
+                                                        className="text-caption text-black"
+                                                        href="/category-grid"
+                                                    >
+                                                        {tag}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
                                 </div>
                                 <Link
                                     className="tf-btn btn-white animate-hover-btn hide-lg"
@@ -140,6 +161,116 @@ export default function Header({handleShowMb}) {
                     </div>
                 </div>
             </header>
-        </div>
+
+            <header className={`${parentClass}`}>
+                <div className="tf-container">
+                    <div className="header-inner ">
+                        <div className="header-inner-wrap">
+                            <nav className="main-menu hide-lg">
+                                <ul className="navigation ">
+                                    <Nav />
+                                </ul>
+                            </nav>
+                            <div className="main-logo">
+                                <Link href={`/`} className="site-logo">
+                                    <Image
+                                        alt="logo"
+                                        width={111}
+                                        height={0}
+                                        src={logo}
+                                    />
+                                </Link>
+                            </div>
+                            <div className="header-right">
+                                <div
+                                    ref={formPopUp}
+                                    className="popup-show-form"
+                                >
+                                    <button
+                                        className="find btn-show"
+                                        onClick={togglePopup}
+                                    >
+                                        <i className="icon-search-solid" />
+                                        <span className="bg-effect" />
+                                    </button>
+
+                                    <div
+                                        ref={popupRef}
+                                        className={`popup-show popup-form-search  ${
+                                            isOpen ? "show" : ""
+                                        }`}
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                        }}
+                                    >
+                                        <div
+                                            className="close-form"
+                                            onClick={() => setIsOpen(false)}
+                                        >
+                                            <i className="icon-times-solid" />
+                                        </div>
+                                        <div className="sub-heading fw-6 mb-3">
+                                            What are You Looking For?
+                                        </div>
+                                        <form className="form-search d-flex gap-3 style-1">
+                                            <input
+                                                className="border p-2"
+                                                name="text"
+                                                placeholder="Search..."
+                                                required
+                                                type="text"
+                                            />
+                                            <button
+                                                className="tf-btn animate-hover-btn"
+                                                type="submit"
+                                            >
+                                                <span>Search</span>
+                                            </button>
+                                        </form>
+                                        <ul className="wrap-tag d-flex align-items-center flex-wrap gap-3 mt-3">
+                                            {[
+                                                "Travel",
+                                                "Fashion & Style",
+                                                "Photograph",
+                                                "Design",
+                                                "Relationships",
+                                            ].map((tag) => (
+                                                <li
+                                                    key={tag}
+                                                    className="tag-item d-flex align-items-center gap-2"
+                                                >
+                                                    <a
+                                                        className="text-caption text-black"
+                                                        href="/category-grid"
+                                                    >
+                                                        {tag}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <Link
+                                    className="tf-btn btn-white animate-hover-btn hide-lg"
+                                    href="#"
+                                >
+                                    <span>Buy Now</span>
+                                </Link>
+                                <div
+                                    className="mobile-button"
+                                    onClick={handleShowMb}
+                                >
+                                    <div className="burger">
+                                        <span />
+                                        <span />
+                                        <span />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </>
     );
 }

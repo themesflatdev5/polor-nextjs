@@ -234,7 +234,13 @@
     }
     &.style-1 {
         .wrap-form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
             padding: 43px 50px 48px;
+            border: 1px solid var(--Mono-gray-2);
+            border-radius: 16px;
         }
         .image-rotate {
             height: 255.75px;
@@ -391,7 +397,6 @@
 .section-contact {
     .box-author {
         padding: 41px 15px 43px;
-        border: none;
         .avatar {
             max-width: 256px;
             margin-bottom: 14px;
@@ -482,7 +487,7 @@
         padding: 0 40px;
     }
     &.style-1 {
-        padding: 48px 12px 40px;
+        padding: 48px 70px 40px;
         border: 1px solid var(--Mono-gray-5);
         border-radius: 9999px;
         .title {
@@ -508,6 +513,18 @@
                 }
             }
         }
+    }
+    .bg-color-1 {
+        background-color: #f6fe6c;
+    }
+    .bg-color-2 {
+        background-color: #7db1ff;
+    }
+    .bg-color-3 {
+        background-color: #ff9aac;
+    }
+    .bg-color-4 {
+        background-color: #8dffa6;
     }
 }
 

@@ -2,9 +2,7 @@ import React from "react";
 import { allCategories } from "@/data/categories";
 import SinglePost from "@/components/single-post/SinglePost";
 import Link from "next/link";
-import Header from "@/components/headers/Header";
 import Footer from "@/components/footer/Footer";
-import MobileMenu from "@/components/headers/MobileMenu";
 import Layout from "@/components/layout/Layout";
 
 export default async function page({ params }) {
@@ -20,7 +18,7 @@ export default async function page({ params }) {
                     <div className="page-inner">
                         <div className="row justify-content-center">
                             <div className="col-lg-8">
-                                <ul className="breadcrumb justify-content-start mb_32">
+                                <ul className="breadcrumb justify-content-start mb_32 text_mono-gray-7">
                                     <li className="text-body-2">
                                         <Link className="link" href={"/"}>
                                             Home
@@ -73,7 +71,7 @@ export default async function page({ params }) {
                     </div>
                 </div>
             </div>
-            <SinglePost post={post} />
+            <SinglePost/>
             <Footer />
         </Layout>
         </>

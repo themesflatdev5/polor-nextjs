@@ -1,6 +1,5 @@
 "use client";
-// import BackToTop from "../elements/BackToTop";
-import Footer from "@/components/footer/Footer";
+import BackToTop from "@/components/common/BackToTop";
 import Header from "@/components/headers/Header";
 import MobileMenu from "../headers/MobileMenu";
 import { useEffect, useState } from "react";
@@ -25,7 +24,7 @@ export default function Layout({ children }) {
                 <Header handleShowMb={handleShowMb} />
                 {children}
             </div>
-            {/* <BackToTop /> */}
+            <BackToTop />
             <MobileMenu showMb={showMb} handleCloseMb={handleCloseMb} />
         </>
     );

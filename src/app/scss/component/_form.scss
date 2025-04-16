@@ -87,7 +87,7 @@ form {
         text-overflow: ellipsis;
     }
     .dropdown-menu {
-        width: 100%;
+        min-width: 180px;
         border: 0;
         padding: 15px 5px;
         border-radius: 0;
@@ -96,17 +96,16 @@ form {
         overscroll-behavior-y: contain;
         overflow-y: auto;
         box-shadow: 0 0 26px rgba(0, 0, 0, 0.06);
+        right: 0;
     }
     .select-item {
         position: relative;
-        padding: 0 15px;
+        padding: 0 5px;
         line-height: 30px;
         width: 100%;
         @include transition3;
         &.active {
             background-color: var(--Mono-gray-2);
-            padding: 0 15px !important;
-            border: 0 !important;
         }
         &:hover {
             background-color: var(--Mono-gray-2);

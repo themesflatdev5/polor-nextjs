@@ -24,7 +24,6 @@ export default function MobileMenu({ showMb, handleCloseMb }) {
                   )
                 : menu.href.split("/")[1] === pathname.split("/")[1]
         );
-
     return (
         <div>
             <Offcanvas

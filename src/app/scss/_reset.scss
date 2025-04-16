@@ -128,13 +128,13 @@ html {
 body {
     line-height: 1;
     padding: 0 !important;
-    font-family: var(--instrumentSans);
+    font-family: $font-main;
     color: var(--Black);
     &::-webkit-scrollbar {
-        width: 0;
+        width: 10px;
     }
     &::-webkit-scrollbar-thumb {
-        background: var(--Primary);
+        background: var(--Black);
         border-radius: 999px;
     }
 }
@@ -202,7 +202,7 @@ button,
 input,
 select,
 textarea {
-    font-family: var(--instrumentSans);
+    font-family: $font-main;
     font-size: 15px;
     font-weight: 400;
     -webkit-font-smoothing: antialiased;
@@ -551,7 +551,7 @@ h5,
 .h5,
 h6,
 .h6 {
-    font-family: var(--instrumentSans);
+    font-family: $font-main;
     margin: 0;
     text-rendering: optimizeLegibility;
     color: var(--Black);
@@ -770,10 +770,10 @@ a {
 
 // font
 .font-2 {
-    font-family: var(--inter);
+    font-family: $font-main-2;
 }
 .font-3 {
-    font-family: var(--poppins);
+    font-family: $font-main-3;
 }
 
 // line-clamp
@@ -1614,7 +1614,7 @@ a {
 }
 .tf-spacing-7 {
     padding-top: 64px;
-    padding-bottom: 86px;
+    padding-bottom: 42px;
 }
 .tf-spacing-8 {
     padding-top: 94px;
@@ -1625,8 +1625,8 @@ a {
     padding-bottom: 106px;
 }
 .tf-spacing-11 {
-    padding-top: 100px;
-    padding-bottom: 76px;
+    padding-top: 64px;
+    padding-bottom: 42px;
 }
 .tf-spacing-12 {
     padding-top: 100px;
@@ -1653,7 +1653,7 @@ a {
     z-index: 5;
 }
 
-.main-content {
+.main-content{
     position: relative;
     z-index: 5;
     background-color: var(--White);
@@ -1745,7 +1745,7 @@ a {
     &::after {
         position: absolute;
         content: "\e90c";
-        // font-family: $fontIcon;
+        font-family: $fontIcon;
         text-align: center;
         line-height: 40px;
         font-size: 20px;
@@ -1783,6 +1783,7 @@ a {
         transition-timing-function: linear;
     }
 }
+
 
 .mfp-bg,
 .mfp-wrap {

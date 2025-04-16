@@ -1,5 +1,7 @@
 import React from "react";
 import Boxmusic from "../common/Boxmusic";
+import { Image } from "react-bootstrap";
+import { author } from "@/data/author";
 
 export default function sidebar() {
     return (
@@ -9,19 +11,18 @@ export default function sidebar() {
                     A little bit about me
                 </div>
                 <div className="avatar mb_18">
-                    <img
+                    <Image
                         alt="avatar"
                         className="lazyload "
-                        data-src="/assets/images/avatar/main-avatar.jpg"
-                        src="/assets/images/avatar/main-avatar.jpg"
+                        src={author.avatar}
+                        width={189}
+                        height={0}
                     />
                 </div>
                 <div className="content">
-                    <h4 className="name fw-6 mb_9">Chloe Jacobs</h4>
+                    <h4 className="name fw-6 mb_9">{author.name}</h4>
                     <div className="text-body-3 text_mono-gray-7">
-                        I'm Chloe Jacobs, a believer in the power of positivity.
-                        Join me as I share tips, tricks, and stories to help you
-                        live your best life.
+                        {author.descSort}
                     </div>
                 </div>
             </div>
@@ -29,28 +30,30 @@ export default function sidebar() {
                 <div className="text-body-2 fw-6 mb_32">Social Network</div>
                 <div className="tf-social style-1 d-flex justify-content-center gap_16 ">
                     <a className="d-flex align-items-center gap_6 " href="#">
-                        <i className="icon-facebook-f fb" /> <span>53K</span>{" "}
+                        <i className="icon-facebook-f fb" /> <span>53K</span>
                     </a>
                     <a className="d-flex align-items-center gap_6 " href="#">
-                        <i className="icon-instagram ins" /> <span>51K</span>{" "}
+                        <i className="icon-instagram ins" /> <span>51K</span>
                     </a>
                     <a className="d-flex align-items-center gap_6 " href="#">
-                        <i className="icon-pinterest pin" /> <span>114K</span>{" "}
+                        <i className="icon-pinterest pin" /> <span>114K</span>
                     </a>
                     <a className="d-flex align-items-center gap_6 " href="#">
-                        <i className="icon-twitter-x x" /> <span>71K</span>{" "}
+                        <i className="icon-twitter-x x" /> <span>71K</span>
                     </a>
                 </div>
             </div>
+
             <Boxmusic />
-          
+
             <div className="shopify-banner mb_12">
                 <div className="banner">
-                    <img
+                    <Image
                         alt="category"
                         className="lazyload "
-                        data-src="/assets/images/section/banner-img.png"
                         src="/assets/images/section/banner-img.png"
+                        width={447}
+                        height={0}
                     />
                 </div>
                 <div className="content">
@@ -62,6 +65,7 @@ export default function sidebar() {
                     </a>
                 </div>
             </div>
+
             <div className="categories-sidebar mb_12">
                 <div className="text-body-2 fw-6 text-center mb_33">
                     Categories
@@ -141,6 +145,7 @@ export default function sidebar() {
                     </li>
                 </ul>
             </div>
+
             <div className="popular-tags-sidebar mb_12">
                 <div className="text-body-2 fw-6 text-center mb_34">
                     Popular tags
@@ -181,6 +186,7 @@ export default function sidebar() {
                     </li>
                 </ul>
             </div>
+
             <div className="post-sidebar mb_12">
                 <div className="text-body-2 fw-6 text-center mb_33">
                     Explore my Instagram
@@ -209,6 +215,7 @@ export default function sidebar() {
                     <span className="text-body-3 fw-6">@polor</span>
                 </a>
             </div>
+
             <div className="text-center newsletter-sidebar">
                 <div className="text-body-2 fw-6   mb_28">Newsletter</div>
                 <p className="text-body-3 mb_32">

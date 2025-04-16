@@ -59,7 +59,7 @@
         opacity: 1;
         visibility: visible;
         z-index: 989;
-       
+        // cursor: url(../images/cursor-close.svg), auto;
     }
 }
 
@@ -133,12 +133,13 @@
     }
 }
 
-.popup-youtube {
+.popup-video {
     position: absolute;
     inset: 0;
     height: 100%;
     width: 100%;
     z-index: 2;
+    background-color: unset;
     i {
         position: absolute;
         border-radius: 50%;

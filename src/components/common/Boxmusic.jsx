@@ -186,7 +186,6 @@ export default function Boxmusic() {
                 ref={playerRef}
                 onLoad={handleLoad}
                 onEnd={handleSongEnd}
-                html5={true}
             />
         </>
     );

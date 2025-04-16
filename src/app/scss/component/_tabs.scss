@@ -8,17 +8,17 @@
         padding-bottom: 6px;
         margin-bottom: 6px;
         .nav-link {
-            display: flex;
-            gap: 8px;
-            align-items: center;
             color: var(--Black);
-            @include flex-center();
             width: 294px;
             height: 80px;
             border-radius: 16px;
             border: 1px solid var(--Mono-gray-2);
             i {
                 font-size: 24px;
+            }
+            span {
+                @include flex-center();
+                gap: 8px;
             }
             &.active,
             &:hover {
@@ -30,7 +30,8 @@
 .flat-animate-tab {
     height: 100%;
     overflow: hidden;
-    &.tab-content {
+
+    .tab-content {
         position: relative;
         height: 100%;
     }

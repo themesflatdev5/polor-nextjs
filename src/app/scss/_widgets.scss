@@ -175,7 +175,7 @@
                 font-weight: 600;
                 font-size: 64px;
                 line-height: 72px;
-                font-family: --instrumentSans;
+                font-family: $font-main;
                 min-width: 41px;
             }
         }
@@ -258,7 +258,7 @@
 }
 
 .experience-item {
-    padding: 40px 40px 31px;
+    padding: 40px 9px 31px 40px;
     border: 1px solid var(--Mono-gray-2);
     border-radius: 16px;
     background-color: var(--White);
@@ -491,7 +491,6 @@
         background-color: var(--Black);
         border-radius: 4px;
     }
- 
 
     #bar1,
     #bar3 {

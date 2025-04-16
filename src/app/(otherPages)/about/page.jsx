@@ -1,0 +1,37 @@
+import Layout from "@/components/layout/Layout";
+import Link from "next/link";
+import React from "react";
+import About from "@/components/about/About";
+import Footer from "@/components/footer/Footer";
+
+export default function page() {
+    return (
+        <>
+            <Layout>
+                <div className="page-title style-default v2">
+                    <div className="tf-container">
+                        <div className="page-inner">
+                            <ul className="breadcrumb text_mono-gray-7">
+                                <li className="text-body-2">
+                                    <Link className="link" href={"/"}>
+                                        Home
+                                    </Link>
+                                </li>
+                                <li className="text-body-2">About Us</li>
+                            </ul>
+                            <div className="heading">
+                                <h2 className="text_black mb_31 fw-6 ">
+                                    About Me
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="main-content counter-scroll">
+                    <About />
+                </div>
+                <Footer />
+            </Layout>
+        </>
+    );
+}

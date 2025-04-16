@@ -67,10 +67,12 @@
 
 .sw-dots {
     .swiper-pagination-bullet {
+        cursor: pointer;
         background: #ffffff99;
         opacity: 1;
         width: 7px;
         height: 7px;
+
         &.swiper-pagination-bullet-active {
             background-color: var(--White) !important;
         }
@@ -86,13 +88,13 @@
 }
 
 .sw-progress {
-    position: relative;
+    position: relative !important; 
     border-radius: 16px;
-    background-color: var(--White);
+    background-color: var(--White) ;
     height: 6px !important;
     overflow: hidden;
     max-width: 692.25px;
     .swiper-pagination-progressbar-fill {
-        background-color: var(--Black);
+        background-color: var(--Black) !important;
     }
 }
