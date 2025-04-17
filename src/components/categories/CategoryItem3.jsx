@@ -52,10 +52,10 @@ export default function CategoryItem3({ category }) {
                         {category.desc}
                     </p>
                     <div className="category-bot d-flex align-items-center justify-content-between">
-                        <div className="credit">
+                        <div className="credit text-body-3 d-flex gap_5">
                             {category.date}
                             <Link
-                                className="hover-line-text fw-6 ml_5"
+                                className="hover-line-text fw-6 "
                                 href="about.html"
                             >
                                 {category.author}

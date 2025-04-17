@@ -102,26 +102,24 @@ const SlideHero = ({ children, effect = "slide", loop = false }) => {
     };
 
     return (
-        <div className="slider-hero-container">
-            <Swiper
-                ref={swiperRef}
-                {...swiperOptions}
-                className="sw-single position-relative"
-            >
-                {React.Children.map(children, (child, index) => (
-                    <SwiperSlide key={index}>{child}</SwiperSlide>
-                ))}
-                <div className="pagination-wrap">
-                    <div className="sw-button style-1 sw-single-prev">
-                        <i className="icon-angle-left-solid" />
-                    </div>
-                    <div className="sw-dots style-default sw-pagination" />
-                    <div className="sw-button style-1 sw-single-next">
-                        <i className="icon-angle-right-solid" />
-                    </div>
+        <Swiper
+            ref={swiperRef}
+            {...swiperOptions}
+            className="sw-single position-relative"
+        >
+            {React.Children.map(children, (child, index) => (
+                <SwiperSlide key={index}>{child}</SwiperSlide>
+            ))}
+            <div className="pagination-wrap">
+                <div className="sw-button style-1 sw-single-prev">
+                    <i className="icon-angle-left-solid" />
                 </div>
-            </Swiper>
-        </div>
+                <div className="sw-dots style-default sw-pagination" />
+                <div className="sw-button style-1 sw-single-next">
+                    <i className="icon-angle-right-solid" />
+                </div>
+            </div>
+        </Swiper>
     );
 };
 

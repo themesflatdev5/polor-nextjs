@@ -207,7 +207,7 @@ export default function Header2({ handleShowMb }) {
                                     </div>
                                     <form className="form-search d-flex gap-3 style-1">
                                         <input
-                                            className="border p-2"
+                                            className="border"
                                             name="text"
                                             placeholder="Search..."
                                             required

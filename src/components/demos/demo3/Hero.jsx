@@ -48,10 +48,24 @@ export default function Hero() {
                                                 {item.tag}
                                             </Link>
                                             <h1 className="text_white fw-6 mb_25 title effect-item effect-up effect-2">
-                                                {item.title}
+                                                {item.title
+                                                    .split("\n")
+                                                    .map((line, i) => (
+                                                        <React.Fragment key={i}>
+                                                            {line}
+                                                            <br />
+                                                        </React.Fragment>
+                                                    ))}
                                             </h1>
                                             <p className="text-body-2 text_white effect-item effect-up effect-3">
-                                                {item.desc}
+                                                {item.desc
+                                                    .split("\n")
+                                                    .map((line, i) => (
+                                                        <React.Fragment key={i}>
+                                                            {line}
+                                                            <br />
+                                                        </React.Fragment>
+                                                    ))}
                                             </p>
                                         </div>
                                         <a

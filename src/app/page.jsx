@@ -8,8 +8,7 @@ import Featured from "@/components/demos/demo1/Featured";
 import MostPopular from "@/components/demos/demo1/MostPopular";
 import Newsletter from "@/components/common/Newsletter";
 import Footer from "@/components/footer/Footer";
-
-
+import ScrollAnimations from "@/components/animation";
 
 export const metadata = {
     title: "Polor - Next.js Template",
@@ -17,7 +16,6 @@ export const metadata = {
 };
 
 export default function Home() {
-    
     return (
         <Layout>
             <Hero />
@@ -30,7 +28,7 @@ export default function Home() {
                 <Newsletter className="tf-spacing-1 pt-0" />
             </div>
             <Footer />
-          
+            <ScrollAnimations />
         </Layout>
     );
 }

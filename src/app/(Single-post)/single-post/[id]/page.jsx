@@ -35,7 +35,7 @@ export default async function page({ params }) {
                                     <div className="content">
                                         <Link
                                             className="category-tag text-caption mb_18"
-                                            href="/categories-grid"
+                                            href={'/categories-grid'}
                                         >
                                             {post.tag}
                                         </Link>

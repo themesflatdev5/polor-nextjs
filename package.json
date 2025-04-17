@@ -11,6 +11,7 @@
   "dependencies": {
     "bootstrap": "^5.3.3",
     "gsap": "npm:gsap-trial@^3.12.7",
+    "lenis": "^1.2.3",
     "next": "15.2.4",
     "odometer": "^0.4.8",
     "react": "^19.0.0",

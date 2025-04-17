@@ -1,15 +1,11 @@
 "use Client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import { author } from "@/data/author";
 import Link from "next/link";
 import Image from "next/image";
-import useAnimateElement from "../../../hooks/useGsapAnimations";
-import { usePathname } from "next/navigation";
 
 export default function About() {
-  
-
     return (
         <div className="section-about style-2 tf-spacing-8">
             <div className="tf-container">

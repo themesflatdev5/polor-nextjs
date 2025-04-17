@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { useState, useRef, useEffect, useCallback, useMemo } from "react";
+import { useState, useRef, useEffect } from "react";
 import React from "react";
 import ReactHowler from "react-howler";
 import { songs } from "@/data/songs";
@@ -11,120 +11,115 @@ export default function Boxmusic() {
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const playerRef = useRef(null);
-    const timerRef = useRef(null);
-
+    const requestRef = useRef(null);
+    const previousTimeRef = useRef(null);
     
-    const currentSong = useMemo(() => songs[currentSongIndex], [currentSongIndex]);
+    const currentSong = songs[currentSongIndex];
 
-   
+    // Reset when song changes
     useEffect(() => {
         setCurrentTime(0);
-        setDuration(0);
-
-        if (isPlaying && playerRef.current) {
-            
-            requestAnimationFrame(() => {
-                playerRef.current?.seek(0);
-            });
+        if (playerRef.current) {
+            // Wait for player to load new song
+            setTimeout(() => {
+                if (playerRef.current) {
+                    setDuration(playerRef.current.duration() || 0);
+                    playerRef.current.seek(0);
+                }
+            }, 100);
         }
-        
         
         return () => {
-            if (timerRef.current) {
-                clearInterval(timerRef.current);
-                timerRef.current = null;
-            }
+            cancelAnimationFrame(requestRef.current);
         };
-    }, [currentSongIndex, isPlaying]);
+    }, [currentSongIndex]);
 
-    
-    useEffect(() => {
-        if (!isPlaying) {
-            if (timerRef.current) {
-                clearInterval(timerRef.current);
-                timerRef.current = null;
-            }
-            return;
-        }
-
-        timerRef.current = setInterval(() => {
-            if (playerRef.current) {
-                const time = playerRef.current.seek();
-                if (typeof time === "number") {
-                    setCurrentTime(time);
+    // Use requestAnimationFrame for smooth progress tracking
+    const animate = (time) => {
+        if (previousTimeRef.current !== undefined) {
+            if (playerRef.current && isPlaying) {
+                const current = playerRef.current.seek();
+                if (typeof current === 'number' && !isNaN(current)) {
+                    setCurrentTime(current);
+                    
+                    // Make sure duration is also set
+                    const dur = playerRef.current.duration();
+                    if (dur && dur !== duration) {
+                        setDuration(dur);
+                    }
                 }
             }
-        }, 1000);
+        }
+        previousTimeRef.current = time;
+        requestRef.current = requestAnimationFrame(animate);
+    };
 
-        return () => {
-            if (timerRef.current) {
-                clearInterval(timerRef.current);
-                timerRef.current = null;
-            }
-        };
+    // Set up and clean up animation frame
+    useEffect(() => {
+        if (isPlaying) {
+            requestRef.current = requestAnimationFrame(animate);
+        } else {
+            cancelAnimationFrame(requestRef.current);
+        }
+        return () => cancelAnimationFrame(requestRef.current);
     }, [isPlaying]);
 
-   
-    const formatTime = useCallback((time) => {
-        if (!time) return "00:00";
+    // Make sure we get duration when the player loads
+    const handleLoad = () => {
+        if (playerRef.current) {
+            const dur = playerRef.current.duration();
+            setDuration(dur || 0);
+        }
+    };
+
+    const formatTime = (time) => {
+        if (!time || isNaN(time)) return "00:00";
         const minutes = Math.floor(time / 60);
         const seconds = Math.floor(time % 60);
-        return `${minutes < 10 ? "0" : ""}${minutes}:${
-            seconds < 10 ? "0" : ""
-        }${seconds}`;
-    }, []);
+        return `${minutes < 10 ? "0" : ""}${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    };
 
-    
-    const handleLoad = useCallback(() => {
-        if (playerRef.current) {
-            setDuration(playerRef.current.duration());
-        }
-    }, []);
+    const handlePlayPause = () => {
+        setIsPlaying(!isPlaying);
+    };
 
-    const handlePlayPause = useCallback(() => {
-        setIsPlaying(prev => !prev);
-    }, []);
-
-    const handlePrevious = useCallback(() => {
+    const handlePrevious = () => {
         if (currentTime > 3) {
             if (playerRef.current) {
                 playerRef.current.seek(0);
                 setCurrentTime(0);
             }
         } else {
-            setCurrentSongIndex(prevIndex =>
+            setCurrentSongIndex((prevIndex) =>
                 prevIndex === 0 ? songs.length - 1 : prevIndex - 1
             );
         }
-    }, [currentTime]);
+    };
 
-    const handleNext = useCallback(() => {
-        setCurrentSongIndex(prevIndex =>
+    const handleNext = () => {
+        setCurrentSongIndex((prevIndex) =>
             prevIndex === songs.length - 1 ? 0 : prevIndex + 1
         );
-    }, []);
+    };
 
-    const handleSeek = useCallback((e) => {
-        if (duration === 0 || !playerRef.current) return;
+    const handleSeek = (e) => {
+        if (!playerRef.current || duration <= 0) return;
 
         const progressBar = e.currentTarget;
-        const clickPosition = e.nativeEvent.offsetX;
-        const progressBarWidth = progressBar.clientWidth;
+        const rect = progressBar.getBoundingClientRect();
+        const clickPosition = e.clientX - rect.left;
+        const progressBarWidth = rect.width;
         const seekPosition = (clickPosition / progressBarWidth) * duration;
-
         playerRef.current.seek(seekPosition);
         setCurrentTime(seekPosition);
-    }, [duration]);
+    };
 
-    const handleSongEnd = useCallback(() => {
+    const handleSongEnd = () => {
         handleNext();
-    }, [handleNext]);
+    };
 
-
-    const progressPercentage = useMemo(() => 
-        duration > 0 ? (currentTime / duration) * 100 : 0, 
-        [currentTime, duration]
-    );
+    const progressPercentage = duration > 0 ? (currentTime / duration) * 100 : 0;
+    
 
     return (
         <>
@@ -178,15 +173,23 @@ export default function Boxmusic() {
                     </div>
                 </div>
                 <div className="progress-container">
-                    <div className="progress-bar" onClick={handleSeek}>
+                    {/* Add tabIndex to make progress bar keyboard accessible */}                    <div 
+                        className="progress-bar" 
+                        onClick={handleSeek}
+                        tabIndex={0}
+                        role="slider"
+                        aria-valuemin={0}
+                        aria-valuemax={100}
+                        aria-valuenow={Math.round(progressPercentage)}
+                    >
                         <div
                             className="progress"
-                            style={{ width: `${progressPercentage}%` }}
+                            style={{ width: `${Math.min(100, Math.max(0, progressPercentage))}%` }}
                         />
                     </div>
                     <div className="time-info">
                         <div className="time-display">
-                            {formatTime(currentTime)}
+                            {formatTime(currentTime)} 
                         </div>
                     </div>
                 </div>
@@ -200,6 +203,7 @@ export default function Boxmusic() {
                 onEnd={handleSongEnd}
                 html5={true}
                 preload={true}
+                format={['mp3']}
             />
         </>
     );

@@ -5,7 +5,8 @@
             "@/app/*": ["src/app/*"],
             "@assets/*": ["public/assets/*"],
             "@/components/*": ["src/components/*"],
-            "@/data/*": ["src/data/*"]
+            "@/data/*": ["src/data/*"],
+            "@/hooks/*": ["src/hooks/*"]
         }
     }
 }

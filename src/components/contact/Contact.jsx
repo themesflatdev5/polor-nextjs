@@ -114,7 +114,7 @@ export default function Contact() {
                                         className="tf-btn animate-hover-btn w-full "
                                         type="submit"
                                     >
-                                        <span> Submit Comment</span>
+                                        <span> Submit Message</span>
                                     </button>
                                 </div>
                             </form>

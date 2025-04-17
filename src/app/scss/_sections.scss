@@ -123,9 +123,8 @@
         }
         .swiper-slide-thumb-active {
             .img-thumb-pagi {
-                border-color: var(--Black);
+                border-color: var(--Mono-gray-5);
                 position: relative;
-
                 &::after {
                     width: 100%;
                     left: 0;

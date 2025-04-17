@@ -4,6 +4,7 @@ import Footer from "@/components/footer/Footer";
 import SinglePost from "@/components/single-post/SinglePost";
 import { allCategories } from "@/data/categories";
 import Image from "next/image";
+import Link from "next/link";
 
 export default async function page({ params }) {
     const resolvedParams = await params;
@@ -20,12 +21,12 @@ export default async function page({ params }) {
                                 <div className="col-md-6">
                                     <div className="category-item">
                                         <div className="content">
-                                            <a
+                                            <Link
                                                 className="category-tag text-caption mb_14"
-                                                href="category-grid.html"
+                                                href={'/categories-grid'}
                                             >
                                                 {post.tag}
-                                            </a>
+                                            </Link>
                                             <h2 className="title mb_6 fw-6">
                                                 {post.title}
                                             </h2>
