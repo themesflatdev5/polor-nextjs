@@ -25,7 +25,9 @@ export default function Home() {
                 <CTA />
                 <Featured />
                 <MostPopular />
-                <Newsletter className="tf-spacing-1 pt-0" />
+                <div className="tf-spacing-1 pt-0">
+                    <Newsletter />
+                </div>
             </div>
             <Footer />
             <ScrollAnimations />
