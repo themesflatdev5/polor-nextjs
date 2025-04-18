@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Newsletter2() {
@@ -59,13 +60,13 @@ export default function Newsletter2() {
                                 Let’s brainstorm{" "}
                                 <span className="fw-6 ">our idea</span>{" "}
                             </h6>
-                            <a
+                            <Link
                                 className="tf-btn-link style-2"
-                                href="contact.html"
+                                href={"/contact"}
                             >
                                 <span className="fw-6">Contact Me</span>
                                 <i className="icon-angle-right-solid" />
-                            </a>
+                            </Link>
                             <div className="shape">
                                 <Image
                                     alt="shape"

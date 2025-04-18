@@ -11,17 +11,18 @@ export default function FeatureBlog() {
     return (
         <div className=" tf-spacing-3 featured-blog">
             <div className="tf-container-4">
-                <div className="heading-section d-flex justify-content-between mb_77">
-                    <h2 className="fw-6 split-text effect-rotate">
-                        Featured Blog
-                    </h2>
+                <div
+                    className="heading-section d-flex justify-content-between mb_77 wow animate__fadeInUp animate__animated"
+                    data-wow-delay="0s"
+                >
+                    <h2 className="fw-6">Featured Blog</h2>
                     <div className="wrap-btn d-flex gap_16">
-                        <a
+                        <Link
                             className="tf-btn style-2 animate-hover-btn  w-1  "
-                            href="category-grid.html"
+                            href={"/category-grid"}
                         >
                             <span>View All</span>
-                        </a>
+                        </Link>
                         <div className="wrap-sw-button d-flex gap_8 ">
                             <div className="sw-button sz-56 v2 style-default nav-prev-layout-1 snbp117">
                                 <i className="icon-long-arrow-alt-left-solid" />

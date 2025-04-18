@@ -96,7 +96,7 @@ export default function Hero() {
                             {thumbsSliedes.map((item, i) => (
                                 <SwiperSlide key={i}>
                                     <div className="img-thumb-pagi">
-                                        <img alt="thumbs-pagi" src={item.src} />
+                                        <Image alt="thumbs-pagi" src={item.src} width={140} height={0}/>
                                     </div>
                                 </SwiperSlide>
                             ))}

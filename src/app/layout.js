@@ -1,13 +1,15 @@
 "use client";
 
 import { Instrument_Sans, Inter, Poppins } from "next/font/google";
-import "../../public/font/icomoon/style.css";
+import "../../public/assets/font/icomoon/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./scss/app.scss";
+import "../../public/assets/scss/app.scss";
+import "../../public/assets/css/animate.min.css";
 import BackToTop from "@/components/common/BackToTop";
 import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect } from "react";
-import useFooterReveal from "@/components/animation/useFooterReveal";
+import { usePathname } from "next/navigation";
+
 
 const instrumentSans = Instrument_Sans({
     subsets: ["latin"],
@@ -30,8 +32,17 @@ const poppins = Poppins({
 });
 
 export default function RootLayout({ children }) {
-  
-
+    const pathname = usePathname();
+    useEffect(() => {
+        const WOW = require("@/utlis/wow");
+        const wow = new WOW.default({
+            animateClass: "animated",
+            offset: 100,
+            mobile: true,
+            live: false,
+        });
+        wow.init();
+    }, [pathname]);
     return (
         <html lang="en" className="mdl-js">
             <body

@@ -16,7 +16,7 @@ export default function Featured() {
                     <div className="sub-heading fw-6 split-text effect-rotate ">
                         Featured
                     </div>
-                    <a className="tf-btn-link " href="category-grid.html">
+                    <a className="tf-btn-link " href={"/category-grid"}>
                         <span className="text-body-1 fw-6 ">Discover more</span>
                         <i className="icon-angle-right-solid" />
                     </a>
@@ -45,27 +45,27 @@ export default function Featured() {
                             </div>
                             <div className="content">
                                 <div>
-                                    <a
+                                    <Link
                                         className="category-tag text-caption  text_white"
-                                        href="category-grid.html"
+                                        href={"/category-grid"}
                                     >
                                         Design
-                                    </a>
+                                    </Link>
                                     <h2 className="title letter-spacing-2 fw-6 text_white">
-                                        {" "}
-                                        <a
+                                       
+                                        <Link
                                             className="hover-line-text"
-                                            href="single-post.html"
+                                            href={"/single-post"}
                                         >
                                             Post-modernist Apartment Design That
                                             Combines Bold Colors, Art, and
                                             Geometric Shapes
-                                        </a>
+                                        </Link>
                                     </h2>
                                 </div>
                                 <div className="category-bot d-flex align-items-center justify-content-between">
                                     <div className="credit text_white text-body-3">
-                                        Aug 10, 2024{" "}
+                                        Aug 10, 2024
                                         <a
                                             className="hover-line-text fw-6"
                                             href="#"
@@ -116,12 +116,12 @@ export default function Featured() {
                                     </span>
                                 </Link>
                                 <div className="content">
-                                    <a
+                                    <Link
                                         className="category-tag text-caption mb_15 "
-                                        href="category-grid.html"
+                                        href={"/category-grid"}
                                     >
                                         {categories4[0].tag}
-                                    </a>
+                                    </Link>
                                     <h5 className="title letter-spacing-2 fw-6">
                                         <Link
                                             className="hover-line-text"

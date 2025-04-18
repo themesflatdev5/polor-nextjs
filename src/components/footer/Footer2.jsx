@@ -88,12 +88,12 @@ export default function Footer2() {
                                 </a>
                             </li>
                             <li>
-                                <a
+                                <Link
                                     className="link  text-body-2"
-                                    href="contact.html"
+                                    href={"/contact"}
                                 >
                                     Contact
-                                </a>
+                                </Link>
                             </li>
                             <li>
                                 <a className="link  text-body-2" href="#">

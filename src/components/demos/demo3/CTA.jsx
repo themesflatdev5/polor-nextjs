@@ -15,7 +15,10 @@ export default function CTA() {
                     />
                 </div>
                 <div className="content">
-                    <h1 className="title fw-6 mt_39 split-text split-lines-rotation-x">
+                    <h1
+                        className="title fw-6 mt_39 wow animate__fadeInUp animate__animated"
+                        data-wow-delay="0s"
+                    >
                         Your World, My Support
                     </h1>
                     <ul

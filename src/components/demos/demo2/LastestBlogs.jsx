@@ -16,10 +16,11 @@ export default function LastestBlogs() {
             id="latest-post"
         >
             <div className="tf-container-4">
-                <div className="heading-section d-flex justify-content-between mb_14">
-                    <h2 className="fw-6 split-text effect-rotate">
-                        Latest Blogs
-                    </h2>
+                <div
+                    className="heading-section d-flex justify-content-between mb_14 wow animate__fadeInUp animate__animated"
+                    data-wow-delay="0s"
+                >
+                    <h2 className="fw-6 ">Latest Blogs</h2>
                     <div className="wrap-btn d-flex gap_16">
                         <Link
                             className="tf-btn style-2 animate-hover-btn  w-1  "
@@ -74,7 +75,7 @@ export default function LastestBlogs() {
                             <div className="category-item style-default v5 hover-image-3 ">
                                 <Link
                                     className="img-style mb_16"
-                                    href="single-post.html"
+                                    href={`/single-post/${item.id}`}
                                 >
                                     <Image
                                         alt="category"

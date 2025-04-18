@@ -14,10 +14,10 @@ export default function MostPopular() {
                     <div className="sub-heading fw-6 split-text effect-rotate">
                         Most Popular
                     </div>
-                    <a className="tf-btn-link " href="category-grid.html">
+                    <Link className="tf-btn-link " href={"/category-grid"}>
                         <span className="text-body-1 fw-6 ">Discover more</span>
                         <i className="icon-angle-right-solid" />
-                    </a>
+                    </Link>
                 </div>
                 <Swiper
                     pagination={{

@@ -1,5 +1,6 @@
 import SwiperLayout from "@/components/common/SlideLayout";
 import { author } from "@/data/author";
+import Link from "next/link";
 import React from "react";
 
 export default function Portfolio() {
@@ -12,16 +13,17 @@ export default function Portfolio() {
                             <div className="left">
                                 <div className="heading mb_75">
                                     <div className="text-body-2 mb_28 sub split-text effect-right">
-                                        My Portfolio{" "}
+                                        My Portfolio
                                     </div>
-                                    <div className="text-body-5 title split-text effect-right">
+                                    <div className="text-body-5 title wow animate__fadeInUp animate__animated"
+                                    data-wow-delay="0s">
                                         Polor Welcomes to ultimate source for
-                                        fresh perspectives! Explore{" "}
+                                        fresh perspectives! Explore
                                         <span className="fw-6">
-                                            curated content{" "}
-                                        </span>{" "}
-                                        to enlighten,{" "}
-                                        <span className="fw-6"> entertain</span>{" "}
+                                            curated content
+                                        </span>
+                                        to enlighten,
+                                        <span className="fw-6"> entertain</span>
                                         and
                                         <span className="fw-6">engage</span>
                                         global readers.
@@ -29,19 +31,19 @@ export default function Portfolio() {
                                 </div>
                                 <div
                                     className="bot d-flex align-items-center gap_24 wow animate__fadeInUp animate__animated"
-                                    data-wow-delay="0s"
+                                    data-wow-delay=".1s"
                                 >
                                     <div className="text-body-5 title">
-                                        Best of{" "}
+                                        Best of
                                         <span className="fw-6"> My Work</span>
                                     </div>
                                     <span className="line" />
-                                    <a
+                                    <Link
                                         className="tf-btn animate-hover-btn btn-px-35"
-                                        href="category-grid.html"
+                                        href={"/category-grid"}
                                     >
                                         <span> Explore Now</span>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

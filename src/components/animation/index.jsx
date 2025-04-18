@@ -1,8 +1,6 @@
 "use client";
 
-import useScrollEffects from "./useScrollEffect";
-import useFooterReveal from "./useFooterReveal";
-
+import useScrollEffects from "./useScrollEffect";   
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
@@ -11,10 +9,8 @@ export default function ScrollAnimations() {
  
     useEffect(() => {
         const cleanupScroll = useScrollEffects();
-        const cleanupFooter = useFooterReveal();
         return () => {
             cleanupScroll();
-            cleanupFooter();
         };
     }, [pathname]);
 

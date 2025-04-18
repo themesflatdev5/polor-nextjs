@@ -10,16 +10,25 @@ export default function About() {
         <div className="section-about style-2 tf-spacing-8">
             <div className="tf-container">
                 <div className="heading-section text-center mb_29">
-                    <div className="sub-heading-section sub-heading fw-6 justify-content-center mb_21 split-text effect-right">
+                    <div
+                        className="sub-heading-section sub-heading fw-6 justify-content-center mb_21 wow animate__fadeInUp animate__animated"
+                        data-wow-delay="0s"
+                    >
                         About Me
                     </div>
-                    <h4 className="split-text split-lines-rotation-x">
+                    <h4
+                        className="wow animate__fadeInUp animate__animated"
+                        data-wow-delay="0s"
+                    >
                         Hi - I’m <span className="fw-6">{author.name}</span> -
                         the creator of Polor. Welcome to my <br /> world! Have a
                         good time when exploring
                     </h4>
                 </div>
-                <div className="tf-social style-1 d-flex align-items-center justify-content-center gap_16 mb_40 wow animate__fadeInUp animate__animated">
+                <div
+                    className="tf-social style-1 d-flex align-items-center justify-content-center gap_16 mb_40 wow animate__fadeInUp animate__animated"
+                    data-wow-delay="0s"
+                >
                     <a href="#">
                         <i className="icon-facebook-f fb" />
                     </a>

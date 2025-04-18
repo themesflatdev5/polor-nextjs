@@ -10,17 +10,18 @@ export default function LastestBlogs() {
     return (
         <div className="section-most-popular sw-layout-1 style-2  tf-spacing-11">
             <div className="tf-container-3">
-                <div className="heading-section style-1 d-flex justify-content-between align-items-center">
-                    <div className="sub-heading-section sub-heading fw-6 split-text effect-right">
+                <div className="heading-section style-1 d-flex justify-content-between align-items-center wow animate__fadeInUp animate__animated"
+                                    data-wow-delay="0s">
+                    <div className="sub-heading-section sub-heading fw-6">
                         Explore Latest Blogs
                     </div>
                     <div className="wrap-btn d-flex gap_16">
-                        <a
+                        <Link
                             className="tf-btn style-2 animate-hover-btn"
-                            href="category-grid.html"
+                            href={"/category-grid"}
                         >
                             <span>Explore Now</span>
-                        </a>
+                        </Link>
                         <div className="wrap-sw-button d-flex gap_8">
                             <div className="sw-button style-default sz-56 v2 nav-prev-layout-1 snbp118">
                                 <i className="icon-long-arrow-alt-left-solid" />

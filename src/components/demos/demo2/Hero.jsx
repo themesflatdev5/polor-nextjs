@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -56,17 +57,20 @@ export default function Hero({handleShowMb}) {
                     <div className="row">
                         <div className="col-xl-9 col-lg-8 col-md-7 col-sm-8">
                             <div className="left">
-                                <h1 className="fw-6 heading-title mb_16 split-text effect-right ">
+                                <h1 className="fw-6 heading-title mb_16 wow animate__fadeInUp animate__animated"
+                                    data-wow-delay="0s">
                                     Welcome to my Blog!
                                 </h1>
-                                <p className="text-body-2 text_mono-gray-7 mb_42 split-text split-lines-transform">
+                                <p className="text-body-2 text_mono-gray-7 mb_42 wow animate__fadeInUp animate__animated"
+                                    data-wow-delay=".1s">
                                     I'm Chloe Jacobs, a believer in the power of
                                     positivity. Join me as I share <br /> tips,
                                     tricks, and stories to help you live your
                                     best life.
                                 </p>
                                 <Link
-                                    className="tf-btn animate-hover-btn"
+                                    className="tf-btn animate-hover-btn wow animate__fadeInUp animate__animated"
+                                    data-wow-delay=".2s"
                                     href={"/about"}
                                 >
                                     <span>More About Me</span>
@@ -118,15 +122,19 @@ export default function Hero({handleShowMb}) {
                         </div>
                         <div className="col-xl-3 col-lg-4 col-md-5 col-8">
                             <div className="wrap-logo d-flex ">
-                                <img
+                                <Image
                                     alt="logo"
                                     src="/assets/images/logo/behance-1.png"
+                                    width={60}
+                                    height={0}
                                 />
-                                <img
+                                <Image
                                     alt="logo"
                                     src="/assets/images/logo/ux.png"
+                                    width={57}
+                                    height={57}
                                 />
-                                <img alt="logo" src="/assets/images/logo/kyoto.png" />
+                                <Image alt="logo" src="/assets/images/logo/kyoto.png" width={50} height={0}/>
                             </div>
                         </div>
                     </div>

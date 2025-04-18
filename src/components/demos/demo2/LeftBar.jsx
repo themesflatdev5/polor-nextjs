@@ -65,9 +65,11 @@ export default function LeftBar() {
                 <div className="wrapper">
                     <div className="author-info">
                         <div className="logo">
-                            <img
+                            <Image
                                 alt="logo"
                                 src="/assets/images/logo/logo.png"
+                                width={137}
+                                height={0}
                             />
                         </div>
                         <div className="box-author style-1">

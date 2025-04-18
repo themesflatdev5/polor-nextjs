@@ -2,6 +2,8 @@ import React from "react";
 import Boxmusic from "../common/Boxmusic";
 import { Image } from "react-bootstrap";
 import { author } from "@/data/author";
+import Link from "next/link";
+
 
 export default function sidebar() {
     return (
@@ -60,9 +62,9 @@ export default function sidebar() {
                     <div className="title text_white fw-6">
                         Shopify Spring Editions
                     </div>
-                    <a className="text_white" href="category-grid.html">
+                    <Link className="text_white" href={"/category-grid"}>
                         Discover more
-                    </a>
+                    </Link>
                 </div>
             </div>
 
@@ -193,22 +195,22 @@ export default function sidebar() {
                 </div>
                 <div className="tf-grid-layout mb_12 tf-col-2  md-col-3 ">
                     <a className="item" href="#">
-                        <img alt="ins" src="/assets/images/section/ins-1.jpg" />
+                        <Image alt="ins" src="/assets/images/section/ins-1.jpg" />
                     </a>
                     <a className="item" href="#">
-                        <img alt="ins" src="/assets/images/section/ins-2.jpg" />
+                        <Image alt="ins" src="/assets/images/section/ins-2.jpg" />
                     </a>
                     <a className="item" href="#">
-                        <img alt="ins" src="/assets/images/section/ins-3.jpg" />
+                        <Image alt="ins" src="/assets/images/section/ins-3.jpg" />
                     </a>
                     <a className="item" href="#">
-                        <img alt="ins" src="/assets/images/section/ins-4.jpg" />
+                        <Image alt="ins" src="/assets/images/section/ins-4.jpg" />
                     </a>
                     <a className="item" href="#">
-                        <img alt="ins" src="/assets/images/section/ins-5.jpg" />
+                        <Image alt="ins" src="/assets/images/section/ins-5.jpg" />
                     </a>
                     <a className="item" href="#">
-                        <img alt="ins" src="/assets/images/section/ins-6.jpg" />
+                        <Image alt="ins" src="/assets/images/section/ins-6.jpg" />
                     </a>
                 </div>
                 <a className="tf-btn w-full style-2" href="#">

@@ -10,12 +10,12 @@ export default function CategoryItem3({ category }) {
         >
             <div className="content">
                 <div>
-                    <a
+                    <Link
                         className="category-tag text-caption mb_9 "
-                        href="category-grid.html"
+                        href={'/category-grid'}
                     >
                         {category.tag}
-                    </a>
+                    </Link>
                     <h5 className="title letter-spacing-1 fw-6 mb_10">
                         <Link
                             className="hover-line-text"
@@ -56,7 +56,7 @@ export default function CategoryItem3({ category }) {
                             {category.date}
                             <Link
                                 className="hover-line-text fw-6 "
-                                href="about.html"
+                                href={"/about"}
                             >
                                 {category.author}
                             </Link>

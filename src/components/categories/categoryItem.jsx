@@ -10,7 +10,7 @@ export default function CategoryItem3({ category }) {
                     <div>
                         <Link
                             className="category-tag mb_24 text-caption "
-                            href="category-grid.html"
+                            href={"/category-grid"}
                         >
                             {category.tag}
                         </Link>

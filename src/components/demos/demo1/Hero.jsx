@@ -44,7 +44,7 @@ export default function Hero() {
                                 <div className="heading">
                                     <a
                                         className="tag text-caption text_white mb_18"
-                                        href="category-grid.html"
+                                        href={"/category-grid"}
                                     >
                                         {slide.tag}
                                     </a>
@@ -56,15 +56,15 @@ export default function Hero() {
                                             </React.Fragment>
                                         ))}
                                     </h1>
-                                    <a
+                                    <Link
                                         className="tf-btn-link style-1"
-                                        href="single-post.html"
+                                        href={`single-post/${slide.id}`}
                                     >
                                         <span className="h6 fw-6 text_white">
                                             {slide.btnText}
                                         </span>
                                         <i className="icon-angle-right-solid" />
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="bot">
                                     <Boxmusic />

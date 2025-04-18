@@ -10,17 +10,18 @@ export default function MostPopular() {
     return (
         <div className="sw-layout-1 most-popular tf-spacing-2 ">
             <div className="tf-container-4">
-                <div className="heading-section d-flex justify-content-between mb_48">
-                    <h2 className="fw-6 split-text effect-rotate">
-                        Most Popular
-                    </h2>
+                <div
+                    className="heading-section d-flex justify-content-between mb_48 wow animate__fadeInUp animate__animated"
+                    data-wow-delay="0s"
+                >
+                    <h2 className="fw-6">Most Popular</h2>
                     <div className="wrap-btn d-flex gap_16">
-                        <a
+                        <Link
                             className="tf-btn style-2 animate-hover-btn  w-1  "
-                            href="category-grid.html"
+                            href={"/category-grid"}
                         >
                             <span>View All</span>
-                        </a>
+                        </Link>
                         <div className="wrap-sw-button d-flex gap_8 ">
                             <div className="sw-button sz-56 v2 style-default nav-prev-layout-1 snbp116">
                                 <i className="icon-long-arrow-alt-left-solid" />
@@ -71,12 +72,12 @@ export default function MostPopular() {
                             <div className="category-item style-default v6 ">
                                 <div className="content">
                                     <div>
-                                        <a
+                                        <Link
                                             className="category-tag text-caption mb_9"
-                                            href="category-grid.html"
+                                            href={"/category-grid"}
                                         >
                                             {item.tag}
-                                        </a>
+                                        </Link>
                                         <h6 className="title letter-spacing-2 fw-5 text_mono-gray-9">
                                             <Link
                                                 className="hover-line-text"
@@ -91,7 +92,7 @@ export default function MostPopular() {
                                             {item.date}
                                             <a
                                                 className="hover-line-text fw-6 text_black ml"
-                                                href="about.html"
+                                                href={"/about"}
                                             >
                                                 {item.author}
                                             </a>

@@ -90,7 +90,7 @@ export default function Comments() {
                             <div className="comment-item">
                                 <div className="box-user d-flex align-items-center gap_12 mb_5">
                                     <div className="avatar">
-                                        <img
+                                        <Image
                                             alt="avatar"
                                             src="/assets/images/avatar/avatar-2.jpg"
                                             width={32}
@@ -125,7 +125,7 @@ export default function Comments() {
                             <div className="comment-item style-reply">
                                 <div className="box-user d-flex align-items-center gap_12 mb_5">
                                     <div className="avatar">
-                                        <img
+                                        <Image
                                             alt="avatar"
                                             src="/assets/images/avatar/avatar-1.jpg"
                                             width={32}
@@ -160,7 +160,7 @@ export default function Comments() {
                             <div className="comment-item">
                                 <div className="box-user d-flex align-items-center gap_12 mb_5">
                                     <div className="avatar">
-                                        <img
+                                        <Image
                                             alt="avatar"
                                             src="/assets/images/avatar/avatar-3.jpg"
                                             width={32}
@@ -200,7 +200,7 @@ export default function Comments() {
                         <div className="comment-item">
                             <div className="box-user d-flex align-items-center gap_12 mb_5">
                                 <div className="avatar">
-                                    <img
+                                    <Image
                                         alt="avatar"
                                         src="/assets/images/avatar/avatar-4.jpg"
                                         width={32}
@@ -239,7 +239,7 @@ export default function Comments() {
                         <div className="comment-item">
                             <div className="box-user d-flex align-items-center gap_12 mb_5">
                                 <div className="avatar">
-                                    <img
+                                    <Image
                                         alt="avatar"
                                         src="/assets/images/avatar/avatar-5.jpg"
                                         width={32}
