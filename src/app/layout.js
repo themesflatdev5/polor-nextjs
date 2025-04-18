@@ -10,7 +10,6 @@ import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-
 const instrumentSans = Instrument_Sans({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
@@ -30,6 +29,8 @@ const poppins = Poppins({
     variable: "--poppins",
     display: "swap",
 });
+
+
 
 export default function RootLayout({ children }) {
     const pathname = usePathname();

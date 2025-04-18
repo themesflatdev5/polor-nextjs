@@ -4,6 +4,7 @@ import Header from "@/components/headers/Header";
 import MobileMenu from "../headers/MobileMenu";
 import { useState } from "react";
 
+
 export default function Layout({ children }) {
     const [showMb, setShowMb] = useState(false);
     const handleCloseMb = () => setShowMb(false);
