@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Introduction from "./Introduction";
 import { author } from "@/data/author";
@@ -6,7 +7,6 @@ import Number from "./Number";
 import { AuthorProvider } from "../../context/AuthorContext";
 import Experience from "./Experience";
 import Awards from "./Awards";
-import Image from "next/image";
 import Newsletter from "../common/Newsletter";
 
 export default function About() {
