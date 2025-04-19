@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Image } from "react-bootstrap";
 
-export default function CategoryItem3({ category }) {
+export default function CategoryItem({ category }) {
     return (
         <>
             <div className="category-item style-default v2 hover-image-3 ">
