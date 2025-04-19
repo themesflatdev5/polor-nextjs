@@ -1,6 +1,6 @@
 import React from "react";
 import Footer from "@/components/footer/Footer";
-import CategoryItem from "@/components/categories/CategoryItem";
+import CategoryItem1 from "@/src/components/categories/CategoryItem1";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
 import { categories } from "@/src/data/categories";
@@ -39,7 +39,7 @@ export default function page() {
                     <div className="tf-container">
                         <div className="tf-grid-layout lg-col-3 sm-col-2 mb_48">
                             {categories.map((category, index) => (
-                                <CategoryItem category={category} key={index} />
+                                <CategoryItem1 category={category} key={index} />
                             ))}
                         </div>
                     </div>
