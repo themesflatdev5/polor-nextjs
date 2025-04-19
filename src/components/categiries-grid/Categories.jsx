@@ -1,7 +1,7 @@
 
 import React from "react";
 import { categories } from "@/data/categories";
-import CategoryItem from "../categories/CategoryItem";
+import CategoryItem from "@/components/categories/CategoryItem";
 
 export default function Categories() {
     return (
