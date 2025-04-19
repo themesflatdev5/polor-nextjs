@@ -1,8 +1,9 @@
 import React from "react";
 import Footer from "@/components/footer/Footer";
-import Categories from "@/src/components/categiries-grid/Categories";
+import CategoryItem from "@/components/categories/CategoryItem";
 import Link from "next/link";
 import Layout from "@/components/layout/Layout";
+import { categories } from "@/src/data/categories";
 
 export default function page() {
     return (
@@ -34,7 +35,15 @@ export default function page() {
                         </div>
                     </div>
                 </div>
-                <Categories />
+                <div className="section-categories mb_48">
+                    <div className="tf-container">
+                        <div className="tf-grid-layout lg-col-3 sm-col-2 mb_48">
+                            {categories.map((category, index) => (
+                                <CategoryItem category={category} key={index} />
+                            ))}
+                        </div>
+                    </div>
+                </div>
                 <Footer />
             </Layout>
         </>
