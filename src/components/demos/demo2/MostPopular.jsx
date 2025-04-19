@@ -90,12 +90,12 @@ export default function MostPopular() {
                                     <div className="category-bot d-flex align-items-center">
                                         <div className="credit text-caption text_mono-gray-5">
                                             {item.date}
-                                            <a
+                                            <Link
                                                 className="hover-line-text fw-6 text_black ml"
                                                 href={"/about"}
                                             >
                                                 {item.author}
-                                            </a>
+                                            </Link>
                                         </div>
                                         <div className="comment d-flex gap_8 align-items-center text-caption text_mono-gray-5">
                                             <i className="icon-comment-alt" />
