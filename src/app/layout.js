@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../public/assets/scss/app.scss";
 import "../../public/assets/css/animate.min.css";
 import BackToTop from "@/components/common/BackToTop";
-import { ReactLenis, useLenis } from "lenis/react";
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
