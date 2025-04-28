@@ -30,8 +30,6 @@ const poppins = Poppins({
     display: "swap",
 });
 
-
-
 export default function RootLayout({ children }) {
     const pathname = usePathname();
     useEffect(() => {
@@ -49,9 +47,7 @@ export default function RootLayout({ children }) {
             <body
                 className={`${inter.variable} ${instrumentSans.variable} ${poppins.variable}`}
             >
-                <ReactLenis root options={{ duration: 1.4 }}>
-                    {children}
-                </ReactLenis>
+                {children}
                 <BackToTop />
             </body>
         </html>

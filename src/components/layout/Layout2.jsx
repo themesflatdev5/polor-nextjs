@@ -15,6 +15,7 @@ export default function Layout({ children }) {
                 {children}
             </div>
             <MobileMenu showMb={showMb} handleCloseMb={handleCloseMb} />
+         
         </>
     );
 }

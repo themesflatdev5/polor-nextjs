@@ -29,7 +29,6 @@ export default function page() {
                         <MostPopular />
                         <FeatureBlog />
                     </div>
-
                     <div className="section" id="portfolio">
                         <CTA />
                         <Newsletter2 />
@@ -38,7 +37,7 @@ export default function page() {
                 </div>
             </div>
             <MobileMenu showMb={showMb} handleCloseMb={handleCloseMb} />
-          
+            <BackToTop />
         </>
     );
 }
